@@ -14,8 +14,6 @@ desafios em ecologia é avaliar o grau de similaridade entre
 comunidades em relação a esses três aspectos e entender quais os
 principais fatores que determinam os padrões observados.
 
-![](images/richards_1_2_perfil_tropi_temperada.jpg)
-
 
 Uma das técnicas utilizadas para quantificar a importância relativa de
 diferentes fatores é **Partição da Variação** e ela pode ser aplicada
@@ -29,7 +27,7 @@ Para fazer a prática, siga os seguintes roteiros:
 
   - [Coeficiente de determinação](coeficiente_determinacao.html), o
     conceito que está na base da partição de variação;
-  - [Partição de variação com uma espécie], em que a ideia é
+  - [Partição de variação com uma espécie](particao_univariada.html], em que a ideia é
     apresentada para o caso mais simples de uma espécie e uma variável
     preditora por vez.
   - [Particão de variação multivariada], que mostra como a análise
