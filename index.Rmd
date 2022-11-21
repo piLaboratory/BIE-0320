@@ -14,7 +14,7 @@ desafios em ecologia é avaliar o grau de similaridade entre
 comunidades em relação a esses três aspectos e entender quais os
 principais fatores que determinam os padrões observados.
 
-![](images/richards_1_2_perfil_tropi_temperada.jpg?450)
+![](images/richards_1_2_perfil_tropi_temperada.jpg)
 
 
 Uma das técnicas utilizadas para quantificar a importância relativa de
@@ -27,7 +27,7 @@ como generalizar a análise para a comunidade, utilizando técnicas de
 
 Para fazer a prática, siga os seguintes roteiros:
 
-  - [Coeficiente de determinação](coeficiente_determinação.html), o
+  - [Coeficiente de determinação](coeficiente_determinacao.html), o
     conceito que está na base da partição de variação;
   - [Partição de variação com uma espécie], em que a ideia é
     apresentada para o caso mais simples de uma espécie e uma variável
