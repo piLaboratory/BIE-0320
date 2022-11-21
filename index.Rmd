@@ -1,0 +1,37 @@
+---
+title: "Exercícios práticos em Ecologia de Populações e Comunidade Vegetais"
+author: "Disciplina BIE-0320, Graduação em Biologia, IB-USP"
+output:
+  html_document:
+    theme: united
+---
+
+# Estrutura de Comunidades
+
+Três aspectos essenciais da estrutura das comunidades são a riqueza de
+espécies, a composição de espécies e suas abundâncias. Um dos grandes
+desafios em ecologia é avaliar o grau de similaridade entre
+comunidades em relação a esses três aspectos e entender quais os
+principais fatores que determinam os padrões observados.
+
+![](images/richards_1_2_perfil_tropi_temperada.jpg?450)
+
+
+Uma das técnicas utilizadas para quantificar a importância relativa de
+diferentes fatores é **Partição da Variação** e ela pode ser aplicada
+para cada espécie separadamente ou para a comunidade como um
+todo. Nesta prática, vamos começar entendendo e aplicando a técnica de
+partição da variação para apenas uma espécie e depois vamos aprender
+como generalizar a análise para a comunidade, utilizando técnicas de
+**Análises Multivariadas**.
+
+Para fazer a prática, siga os seguintes roteiros:
+
+  - [Coeficiente de determinação](coeficiente_determinação.html), o
+    conceito que está na base da partição de variação;
+  - [Partição de variação com uma espécie], em que a ideia é
+    apresentada para o caso mais simples de uma espécie e uma variável
+    preditora por vez.
+  - [Particão de variação multivariada], que mostra como a análise
+    pode ser feita para dados de muitas espécies e muitas variáveis
+    preditoras de uma vez.
