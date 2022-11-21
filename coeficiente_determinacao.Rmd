@@ -1,0 +1,27 @@
+---
+title: "O coeficiente de determinação"
+author: "Exercício prático da disciplina Ecologia de Populações de Comunidades Vegetais, IB-USP"
+output:
+  html_document:
+    toc: true
+    theme: united
+  pdf_document:
+    toc: true
+    highlight: zenburn
+---
+
+# Introdução
+
+O coeficiente de determinação ($R^2$) expressa a proporção da variação
+de uma medida (variável resposta) que é explicada pela variação de
+outra (variável explanatória). Se supomos que a variação é explicada
+por uma relação linear, os cálculos são simples e ajudam muito a
+entender a lógica da partição da variação que está por trás do $R^2$.
+
+Neste roteiro vamos usar a regressão linear e um conjunto pequeno de
+dados para entender o coeficiente de determinação.
+
+## Preparação para o exercício
+
+Abra o programa R, clicando no ícone que está na área de trabalho do
+seu computador: ![logotipo do R](images/logor.png)
