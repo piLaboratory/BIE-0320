@@ -43,7 +43,7 @@ pressione *"Enter"*:
 
 
 ```{r}
-dados <- read.csv("https://raw.githubusercontent.com/piklprado/BIE-0320/main/data/roteiro1b.csv")
+dados <- read.csv("https://raw.githubusercontent.com/piLaboratory/BIE-0320/main/data/roteiro1b.csv")
 ```
 
 Se não houve nenhuma mensagem de erro agora você tem no R uma tabela
