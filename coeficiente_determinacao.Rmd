@@ -224,7 +224,7 @@ V.expl/V.total
 
 Esse coeficiente de determinação é o famoso $R^2$ das regressões lineares!
 
-Neste caso dizemos que `r round(V.expl/V.total)*100`% da variação de Y é
+Neste caso dizemos que `r round(100*V.expl/V.total,1)`% da variação de Y é
 explicada por X. Nada mal. Mas o que você poderia esperar de dados que
 a gente mesmo criou, né!
 
