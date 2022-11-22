@@ -95,7 +95,8 @@ parcela. Já importamos estes dados para o R na seção anterior, então
 temos só que executar um comando no R para ver o gráfico:
 
 ```{r , eval=FALSE}
-plot(abund ~ pH, data = dados)
+plot(abund ~ pH, data = dados,
+     ylab= "Abundância de Non ilum")
 ```
 
 O gráfico sugere que a abundância da planta é proporcional ao pH. Se
@@ -245,9 +246,9 @@ formado pelo componente compartilhado com a outra variável ($b$) e por
 uma outra fração $c$, que chamamos de **fração de variância explicada
 apenas pelo espaço**.
 
-Por fim, variação total é representada pelo
-retângulo externo. A parte não coberta pelos círculos é a variação que não é
-explicada por nenhuma variável, indicada por $d$.
+Por fim, variação total é representada pelo retângulo externo. A parte
+não coberta pelos círculos é a variação que não é explicada por
+nenhuma variável, indicada por $d$.
 
 
 
@@ -263,13 +264,15 @@ dessas duas variáveis:
 regr.tudo <- lm(abund ~ pH + space, data = dados)
 ```
 
-De onde obtemos a variação explicada pelo pH e a variável espacial juntas:
+Da qual obtemos a variação explicada pelo pH e a variável espacial juntas:
 
 ```{r, eval=FALSE }
 summary(regr.tudo)$r.squared
 ```
 
-Esta quantidade corresponde a $a+b+c$ no diagrama acima, que vamos chamar de $XW$. Sabendo que 
+Esta quantidade corresponde a $a+b+c$ no diagrama acima, que vamos
+chamar de $XW$. Sabendo que a soma de todas as frações de variação é
+um:
 
 $$a+b+c+d\ = \ XW + d \ = \ 1$$ 
 
@@ -345,8 +348,9 @@ Usando os valores de $X$, $W$ e $XW$ que já calculamos e guardamos no R temos e
 
 
 # Conclusão
-Abaixo o diagram de Venn da partição da variação na abundância de 
-*Non illum* nos componentes que definimos neste roteiro:
+Abaixo o diagram de Venn da partição da variação na abundância de *Non
+illum* nos componentes que definimos neste roteiro. Verifique se os
+valores de cada fração corresponde aos que você obteve:
 
 ![](images/venn_univar.png)
 
@@ -363,7 +367,6 @@ barplot(matrix(c(a,b,c)*100,3,1), beside=FALSE, width = 0.05, xlim=c(0,.2),
 axis(2, cex.axis=1.5)
 text(x=c(0.08,0.08,0.08), y = c(a/1.5, a+b/2, (a+b)+c/2)*100, labels = c("[a]", "[b]", "[c]"), cex=1.75)
 ```
-
 
 ## A pergunta sobre a vida, o universo e tudo mais
 
