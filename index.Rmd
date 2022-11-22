@@ -21,22 +21,22 @@ abundância de diferentes espécies varia no espaço, e que há padrões
 que nos dão pistas sobre processos que organizam as comunidades. Por
 exemplo, os mapas a seguir respresentam a densidade de 10 espécies de
 plantas em cada uma das 100 quadrículas de uma parcela. As quadrículas
-mais escuras têm maior densidade das palntas e as mais claras menor
+mais escuras têm maior densidade das plantas e as mais claras menor
 densidade.
 
 ![](images/distribuicaoespacial_especies.png)
 
 Você percebe padrões nos mapas acima? Se há padrão, queremos uma
-explicação! Imagine que você tenha também mapas de medidas em cada
-quadrícula de cinco variáveis de solo importantes para as plantas:
+explicação! Imagine que você tenha também mapas de medidas de cinco
+variáveis de solo importantes para as plantas, em cada quadrícula :
 
 ![](images/distribuicaoespacial_variaveisambientais.png)
 
 Parece haver relação entre os dois mapas? O objetivo da particão da
-variação é buscar estas relações. Ou seja, estabelecer relações entre
-padrões espaciais das espécies, destas com outras variáveis do
-ambiente. Feito isso, é possível quantificar quato da variação de
-abundância das espécies foi captada ou explicada, pelas variáveis
+variação é avaliar essas relações. Ou seja, estabelecer relações entre
+padrões espaciais das espécies, e destas com outras variáveis do
+ambiente. Feito isso, é possível quantificar quanto da variação de
+abundância das espécies foi captada, ou explicada, pelas variáveis
 ambientais.
 
 ## Particão passo a passo
