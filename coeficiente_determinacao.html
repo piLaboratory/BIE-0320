@@ -402,7 +402,7 @@ linha de comando ou <strong>prompt</strong>, onde você deve escrever
 comandos para o R.</p>
 <p>Copie e cole o comando abaixo na linha de comando do R, para carregar
 os dados que vamos usar:</p>
-<pre class="r"><code>dadinhos &lt;- read.csv(&quot;https://raw.githubusercontent.com/piklprado/BIE-0320/main/data/dadinho.csv&quot;)</code></pre>
+<pre class="r"><code>dadinhos &lt;- read.csv(&quot;https://raw.githubusercontent.com/piLaboratory/BIE-0320/main/data/dadinho.csv&quot;)</code></pre>
 <p>Se não houve nenhuma mensagem de erro agora você tem no R uma tabela
 com 8 linhas e duas colunas, que explicaremos a seguir. Se quiser
 verificar se a tabela foi importada, digite o nome dela no R</p>
@@ -576,7 +576,10 @@ armazenamos:</p>
 <h2>E finalmente o coeficiente de determinação!</h2>
 <p>Obtemos o coeficiente de determinação dividindo <span class="math inline">\(V_{explic}\)</span> por <span class="math inline">\(V_{total}\)</span>:</p>
 <pre class="r"><code>V.expl/V.total</code></pre>
-<p>Esse coeficiente de determinação é o famoso <span class="math inline">\(R^2\)</span> das regressões lineares!</p>
+<p>Esse coeficiente de determinação é o famoso <span class="math inline">\(R^2\)</span> das regressões lineares! Ele é uma
+das informações importantes sobre uma regressão, que está no objeto que
+usamos para guardar os resultados da regressão:</p>
+<pre class="r"><code>summary(dadinhos.lm)$r.squared</code></pre>
 <p>Neste caso dizemos que 91.1% da variação de Y é explicada por X. Nada
 mal. Mas o que você poderia esperar de dados que a gente mesmo criou,
 né!</p>

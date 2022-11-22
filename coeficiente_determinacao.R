@@ -3,7 +3,7 @@ library(knitr)
 
 
 ## ----importa-dadinhos---------------------------------------------------------
-dadinhos <- read.csv("https://raw.githubusercontent.com/piklprado/BIE-0320/main/data/dadinho.csv")
+dadinhos <- read.csv("https://raw.githubusercontent.com/piLaboratory/BIE-0320/main/data/dadinho.csv")
 
 
 ## ----mostra-dadinhos, eval=FALSE----------------------------------------------
@@ -69,4 +69,8 @@ V.expl <-  V.total - V.resid
 
 ## ---- eval=FALSE--------------------------------------------------------------
 ## V.expl/V.total
+
+
+## ---- eval=FALSE--------------------------------------------------------------
+## summary(dadinhos.lm)$r.squared
 

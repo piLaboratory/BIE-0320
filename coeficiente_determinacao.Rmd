@@ -44,7 +44,7 @@ Copie e cole o comando abaixo na
 linha de comando do R, para carregar os dados que vamos usar:
 
 ```{r importa-dadinhos}
-dadinhos <- read.csv("https://raw.githubusercontent.com/piklprado/BIE-0320/main/data/dadinho.csv")
+dadinhos <- read.csv("https://raw.githubusercontent.com/piLaboratory/BIE-0320/main/data/dadinho.csv")
 ```
 
 Se não houve nenhuma mensagem de erro agora você tem no R uma tabela
@@ -222,7 +222,14 @@ Obtemos o coeficiente de determinação dividindo $V_{explic}$ por $V_{total}$:
 V.expl/V.total
 ```
 
-Esse coeficiente de determinação é o famoso $R^2$ das regressões lineares!
+Esse coeficiente de determinação é o famoso $R^2$ das regressões
+lineares! Ele é uma das informações importantes sobre uma regressão,
+que está no objeto que usamos para guardar os resultados da regressão:
+
+
+```{r, eval=FALSE }
+summary(dadinhos.lm)$r.squared
+```
 
 Neste caso dizemos que `r round(100*V.expl/V.total,1)`% da variação de Y é
 explicada por X. Nada mal. Mas o que você poderia esperar de dados que
