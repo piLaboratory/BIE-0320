@@ -32,7 +32,7 @@ quadrícula de cinco variáveis de solo importantes para as plantas:
 
 ![](images/distribuicaoespacial_variaveisambientais.png)
 
-Parece haver relação entre od dois mapas? O objetivo da particão da
+Parece haver relação entre os dois mapas? O objetivo da particão da
 variação é buscar estas relações. Ou seja, estabelecer relações entre
 padrões espaciais das espécies, destas com outras variáveis do
 ambiente. Feito isso, é possível quantificar quato da variação de
