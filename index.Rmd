@@ -16,7 +16,31 @@ principais fatores que determinam os padrões observados.
 
 
 Uma das técnicas utilizadas para quantificar a importância relativa de
-diferentes fatores é **Partição da Variação** e ela pode ser aplicada
+diferentes fatores é **Partição da Variação**. A ideia geral é que a
+abundância de diferentes espécies varia no espaço, e que há padrões
+que nos dão pistas sobre processos que organizam as comunidades. Por
+exemplo, os mapas a seguir respresentam a densidade de 10 espécies de
+plantas em cada uma das 100 quadrículas de uma parcela. As quadrículas
+mais escuras têm maior densidade das palntas e as mais claras menor
+densidade.
+
+![](images/distribuicaoespacial_especies.png)
+
+Você percebe padrões nos mapas acima? Se há padrão, queremos uma
+explicação! Imagine que você tenha também mapas de medidas em cada
+quadrícula de cinco variáveis de solo importantes para as plantas:
+
+![](images/distribuicaoespacial_variaveisambientais.png)
+
+Parece haver relação entre od dois mapas? O objetivo da particão da
+variação é buscar estas relações. Ou seja, estabelecer relações entre
+padrões espaciais das espécies, destas com outras variáveis do
+ambiente. Feito isso, é possível quantificar quato da variação de
+abundância das espécies foi captada ou explicada, pelas variáveis
+ambientais.
+
+## Particão passo a passo
+A partição da variação  pode ser aplicada
 para cada espécie separadamente ou para a comunidade como um
 todo. Nesta prática, vamos começar entendendo e aplicando a técnica de
 partição da variação para apenas uma espécie e depois vamos aprender
