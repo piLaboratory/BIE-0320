@@ -1,0 +1,145 @@
+===== Índice =====
+  * [[ecovirt:start]]
+  * [[ecovirt:intro]]
+  * [[ecovirt:roteiro:soft:start|Programas utilizados]]
+
+
+--------
+
+===== Roteiros =====
+
+--> Populações #
+  * [[ecovirt:roteiro:den_dep:roteiros|Introdução]] 
+
+--> Estrutura #
+  * [[ecovirt:roteiro:pad_spat|Padrão Espacial]] 
+
+<--     
+
+--> Dinâmica #   
+
+--> Denso Independente #
+  * [[ecovirt:roteiro:den_ind:di_RCMDR| Crescimento Exponencial]]
+  * [[ecovirt:roteiro:den_ind:di_earcmdr| Estocasticidade Ambiental]]
+  * [[ecovirt:roteiro:den_ind:di_edrcmdr | Estocasticidade Demográfica]]
+
+<--
+
+--> Denso Dependente #
+  * [[ecovirt:roteiro:den_dep:den_depRCmdr| Modelo logístico]]
+  * [[ecovirt:roteiro:math:allesage|Efeito Allee]]
+
+<--
+
+--> Populações Estruturadas #
+  * [[ecovirt:roteiro:pop_str:pstr_mtr|Roteiro Matriz de Leslie]]
+  * [[ecovirt:roteiro:pop_str:pstr_ddexcel|Denso-Dependência ]]
+  * [[ecovirt:roteiro:pop_str:pstr_ser|Sensibilidade e Elasticidade]] 
+
+<--
+
+<--
+
+<--
+
+--> Metapopulações #
+  *[[ecovirt:roteiro:metap_uma:roteiros| Introdução]]
+
+--> Uma Espécie #
+  * [[ecovirt:roteiro:metap_uma:metap_chuvarcmdr|Chuva de Propágulos]]
+  * [[ecovirt:roteiro:metap_uma:metap_circmdr|Colonização Interna]]
+  * [[ecovirt:roteiro:metap_uma:metap_errcmdr|Efeito Resgate]]
+
+<--
+
+--> Duas Espécies #
+  * [[ecovirt:roteiro:metap_duas:metap_coexrcmdr|Coexistência em Metapopulações]]
+  * [[ecovirt:roteiro:metap_duas:metap_dhabrcmdr|Destruição de Habitat]]
+
+<--
+
+<--
+
+
+--> Comunidades ^
+  * [[ecovirt:roteiro:comuni:roteiros|Introdução]]
+
+--> Estrutura ^
+  * [[ecovirt:roteiro:comuni:comuni_virt1|Comunidade Virtual]]
+  * [[ecovirt:roteiro:comuni:comuni_classr|Classificação por agrupamento]]
+  * [[ecovirt:roteiro:comuni:comuni_order|Ordenação]]
+
+<--
+
+--> Dinâmica e Distúrbio ^
+  * [[ecovirt:roteiro:sucess:div_estab|Diversidade e Estabilidade]]
+  * [[ecovirt:roteiro:sucess:suc_distrcmdr|Distúrbio e Coexistência]]
+  * [[ecovirt:roteiro:sucess:tradeoff|Demandas Conflitantes]]
+  * [[ecovirt:roteiro:sucess:suc_tipo|Sucessão Ecológica]]
+  * [[ecovirt:roteiro:sucess:nich_regrcmdr|Nicho de Regeneração]]
+
+<--
+
+--> Dinâmicas Neutras ^ 
+  * [[ecovirt:roteiro:neutr:biogeorcmdr|Biogeoografia de Ilhas]]
+  * [[ecovirt:roteiro:neutr:neutrarcmdr|Teoria Neutra da Biodiversidade ]]
+
+<--
+
+<--
+
+------
+  
+  
+
+
+--> Matemática e Estatística #
+  * [[ecovirt:roteiro:math:roteiros|Introdução]]
+
+--> Cálculo Integral e Diferencial #
+
+  * [[ecovirt:roteiro:math:exponencial|Taxas de crescimento, derivadas e função exponencial]]
+  * [[ecovirt:roteiro:math:integralr|Antiderivadas e integral definida]]
+  * [[ecovirt:roteiro:math:eq_difr|Introdução a equações diferenciais]]
+  * [[ecovirt:roteiro:math:numeric_int_ipython|Integração numérica de equações diferenciais]]
+  * [[ecovirt:roteiro:math:stabilitysage|Análise de estabilidade]]
+
+<--
+
+--> Processos Estocásticos # 
+  * [[:ecovirt:roteiro:math:bebadoRcmdr|Caminhada aleatória em uma dimensão]]
+  * [[:ecovirt:roteiro:math:zerosumRcmdr|Dinâmica de soma zero]]
+
+<--
+<--
+
+
+
+
+
+-----------
+
+===== Links Externos =====
+
+<WRAP center round box 50%>
+[[http://labtrop.ib.usp.br/|{{:logolabtrop2.png?100|}}]]
+
+</WRAP>
+
+
+<WRAP center round box 50%>
+[[http://ecologia.ib.usp.br/let|{{:logolet.gif?&100|}}]]
+</WRAP>
+
+<WRAP center round box 50%>
+[[http://ecologia.ib.usp.br/bie5782|{{::ecor.png?100|}}]]
+</WRAP>
+
+
+---------
+===== Visitantes =====
+<html>
+<script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?u=jFIq&d=Xh4iyMdVAWNU2D_AViXr9x496gArkODBCyEO2VGyVxc"></script>
+<br>
+</html>
+

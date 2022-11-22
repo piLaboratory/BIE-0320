@@ -1,0 +1,122 @@
+~~NOTOC~~
+
+<html><font size=8 face="Arial">Comunidades</font></html> 
+
+
+
+====== Estrutura de Comunidades ======
+{{:ecovirt:roteiro:comuni:hemisfpq.png?200  |}}
+Nos três exercícios desta seção iremos montar uma comunidade hipotética ao longo de um gradiente ambiental para depois utilizar as ferramentas de classificação e ordenação de comunidades e ver como elas se comportam. A ideia é contrastarmos duas visões concorrentes da ecologia de comunidades : (1) as comunidades tem limites definidos e (2) há uma transição gradual na substituição de espécies ao longo de gradientes ambientais.
+
+
+-->Comunidade Virtual#
+{{ecovirt:virtual_online_community2.jpg?220  |}} Vamos construir comunidade vegetais virtuais baseadas nas ideias de "superorganismo" de Frederic Clements (comunidades com limites bem definidos) e no conceito individualístico de Henry Gleason (comunidades sem limites claramente definidos). 
+  * [[ecovirt:roteiro:comuni:comuni_virt1|Roteiro Comunidade Virtual]]
+
+<--
+
+
+-->Classificação por Agrupamento#
+
+{{ecovirt:whiskysociety.gif?200  |}} Os métodos de classificação agrupam objetos conforme a similaridade de seus atributos. Servem para identificarmos conjuntos de objetos mais similares que, no nosso caso, são parcelas de plantas. Entretanto, o método pode ser usado também para outros fins nobres, como classificar [[http://www.dcs.ed.ac.uk/home/jhb/whisky/lapointe/text.html/classification.html|  whisky escocês single malt]]. Esse trabalho foi publicado na revista Applied Statististics (1994) 43, No. 1, pp. 237-257, uma das mais conceituadas revistas na área de Matemática e Estatística, tendo como autor um dos mais renomados ecólogos da atualidade, [[http://www.bio.umontreal.ca/legendre/indexEn.html| Pierre Legendre]], da Universidade de Montreal no Canadá. Ele e seu filho publicaram um dos livros que é referência para quem está interessado em métodos quantitativos em ecologia: "Numerical Ecology". Este exercício é dedicado a ele.
+
+  * [[ecovirt:roteiro:comuni:comuni_classr|Roteiro de Classificação por agrupamento ]]
+
+<--
+
+ 
+
+-->Ordenação #
+{{ecovirt:multivar.jpg?300  |}}Ordenação é um método de redescrição de dados multivariados de forma a apresentá-los em poucas dimensões, geralmente 2 ou 3, com perda mínima de informação. Vamos usar um dos primeiros métodos de ordenação descritos - a ordenação polar. Esse método foi desenvolvido por John Thomas Curtis e serviu como forma de revelar gradientes em seus estudos com comunidades de plantas em Wisconsin, considerados como evidências contra a teoria de comunidades como superorganismo de Clements.
+
+  * [[ecovirt:roteiro:comuni:comuni_order|Roteiro Ordenação ]]
+
+  
+<--
+\\
+
+-----
+
+====== Distúrbio e Sucessão ======
+
+{{ecovirt:odd-growth-forest.jpg?150  |}}  
+Distúrbios ou perturbações naturais foram considerados por muito tempo um fator exógeno e raro nos sistema naturais, mas hoje estão plenamente incorporados como um importante fator na organização das comunidades. Além disso, o estudo das perturbações adquiriu maior importância com o aumento de sua intensidade e frequência pela ação do homem.  Após perturbações, as comunidades vegetais tendem a retornar a um estado similar ao inicial, o que chamamos de sucessão ecológica. Vamos abordar aqui as relações entre perturbação e sucessão, focando a coexistência e demanda conflitante colonização/competição em modelos simples de dinâmica de comunidade.
+\\
+
+-->Diversidade e Estabilidade#
+{{http://imgs.xkcd.com/comics/mimic_octopus.png?200  |}}
+Comunidades com mais espécies são mais estáveis? Na década de 1970 Robert May mostrou que o contrário pode acontecer. 
+
+Conheça o método usado por May para avaliar a estabilidade de sistemas dinâmicos e reproduza seus resultados.
+
+
+  * [[ecovirt:roteiro:sucess:div_estab|Roteiro Diversidade e Estabilidade]]
+
+--------
+
+<--
+
+--> Distúrbio e Coexistência #
+
+  * [[ecovirt:roteiro:sucess:suc_distrcmdr|Roteiro Distúrbio e Coexistência]]
+
+------------
+
+<--
+
+--> Distúrbio e Tradeoff: Demandas Conflitantes #
+
+
+{{:ecovirt:roteiro:comuni:seed_dispersal_different_l.jpg?400  |}}
+O conceito de demandas conflitantes (//tradeoff// no original em inglês) é muito importante para a ecologia e evolução. No contexto ecológico está relacionado, por exemplo, a restrições  energética que impedem um indivíduo de investir em várias estratégias ótimas simultaneamente, como crescer e reproduzir. No contexto evolutivo está relacionado à seleção de estratégias ecológicas em detrimento de outras também eficiente, por exemplo o tamanho de frutos e a quantidade produzida por evento reprodutivo. Aqui apresentamos o conceito associado a diferentes regimes de distúrbios. 
+
+  * [[ecovirt:roteiro:sucess:tradeoff|Roteiro Demandas Conflitantes]]
+
+
+-------
+
+<--
+
+--> Tipos de Sucessão Ecológica #
+
+  * [[ecovirt:roteiro:sucess:suc_tipo|Roteiro Tipos de Sucessão Ecológica]]
+
+----------
+
+<--
+
+
+--> Nicho de Regeneração #
+
+  * [[ecovirt:roteiro:sucess:nich_regrcmdr|Nicho de Regeneração]]
+
+----------
+
+<--
+
+\\
+
+----
+====== Dinâmicas Neutras ======
+
+{{:ecovirt:true-neutral.jpg?200  |}}
+Modelos neutros em ecologia partem da premissa de que todas as espécie são competitivamente equivalentes, ao contrário dos modelos baseados em nicho. Vamos examinar duas das teorias neutras mais importantes em ecologia, ambas publicados na influente série de monografias [[http://press.princeton.edu/catalogs/series/mpb.html|MPB]], da Universidade de Princenton.
+
+
+
+-->Biogeografia de ilhas#
+{{   ecovirt:anavilhanas.jpg?200|}}
+Além da teoria neutra de evolução molecular de Motoo Kimura de 1968, Hubbell baseou-se fortemente na teoria de biogeografia de ilhas de MacArthur e Wilson. A teoria de biogeografia de ilhas foi criada para explicar um padrão muito recorrente na natureza: a relação entre o número de espécies de um local e sua área. A teoria mais aceita até então, baseada na idéia de que cada espécie possui um nicho, propunha que ilhas maiores tinham maior riqueza de espécies porque continham maior diversidade de habitats. Já a teoria de MacArthur e Wilson propõe que o número de espécies de uma ilha é determinado apenas pela taxa de extinção das espécies já presentes na ilha e pela taxa de imigração de espécies vindas do continente. 
+
+  * [[ecovirt:roteiro:neutr:biogeorcmdr|Roteiro Biogeoografia de Ilhas]]
+
+<--
+
+-->Teoria Neutra da Biodiversidade#
+{{   ecovirt:cartoon_unified_neutral_theory.jpg?200|Todas espécies tem o mesmo nicho?}}Stephen Hubbell partiu da Teoria de Biogeografia de Ilhas e de sua vasta experiência com dinâmica de florestas tropicais para propor um processo simples de nascimentos e mortes que explicaria a grande diversidade nos trópicos. Conheça mais sobre a polêmica "Teoria Neutra Unificada da Biodiversidade e Biogeografia", onde as espécies são equivalentes.
+
+  * [[ecovirt:roteiro:neutr:neutrarcmdr|Roteiro Teoria Neutra da Biodiversidade ]]
+
+<--
+
+  

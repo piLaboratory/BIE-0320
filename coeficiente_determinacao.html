@@ -428,31 +428,35 @@ horizontal azul:</p>
 quadrado e somamos. Isso é chamado “soma dos desvios quadrados” ou
 simplesmente “soma dos quadrados”.</p>
 <p>Por que elevar ao quadrado os desvios à média? Bom, primeiro porque a
-soma dos desvios é sempre zero… Mas também porque a soma dos desvios ao
-quadrado tem várias propriedades estatísticas úteis, como a aditividade
-que vamos ver em seguida.</p>
+soma dos desvios (sem elevar ao quadrado) é sempre zero… Mas também
+porque a soma dos desvios ao quadrado tem várias propriedades
+estatísticas úteis, como a aditividade que vamos ver em seguida.</p>
 <p>A soma dos quadrados descreve a variação <strong>total</strong> da
 variável Y. Calcule esta soma no R com o comando a seguir, e guarde em
-uma objeto chamado ‘’V.total’’:</p>
+uma objeto chamado <code>V.total</code>:</p>
 <pre class="r"><code>V.total &lt;- sum(dadinhos$dif^2)</code></pre>
-<p>Lembrando que para ver o valor que vc obteve e armazenou neste
+<p>Lembre-se que para ver o valor que vc obteve e armazenou neste
 objeto, basta digitar o nome do objeto na linha de comando:</p>
 <pre class="r"><code>V.total</code></pre>
 </div>
 <div id="a-variação-que-sobra-da-regressão" class="section level2">
 <h2>A variação que sobra da regressão</h2>
 <p>Uma regressão linear busca explicar a variação observada em uma
-variável pela variação de outra. Se a regressão é bem sucedida,
-esperamos que reste bem menos variação sem explicação, que chamamos de
-<strong>variação residual</strong> da regressão. Esta variação residual
-é a soma dos quadrados dos desvios de cada ponto à linha de
-regressão.</p>
+variável (resposta) pela variação de outra (preditoras ou
+explanatórias). Se a regressão é bem sucedida, esperamos que deixe pouca
+variação sem explicação. Chamamos de <strong>variação residual</strong>
+da regressão a parte da variação total que não é explicada pela
+regressão. Esta variação residual é a soma dos quadrados dos desvios de
+cada ponto à linha de regressão.</p>
 <p>Na figura a seguir está a linha da regressão linear de Y em função de
 X, e os desvios de cada observação em relação a esta reta de regressão.
-Os resíduos da regressão são bem menores que os desvios em relação à
-média, da figura anterior:</p>
+Veja que resíduos da regressão são bem menores que os desvios em relação
+à média, da figura anterior. Ou seja, a regressão de fato explica uma
+parte da variação dos dados, deixando como não explicada uma fração
+menor desta variação.</p>
 <p><img src="data:image/png;base64,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RRWP+/Tpc+DAgQsXLqgd6bKcnJzk5OTmzZt36tTp7NmzzZs337p1q+qhLtq2bdvmzZsrHlc0Lzdu3FjtSBU6dux49Zd+fn66NY7a7fbY2FjVU1S1bt26oUOH3n777dddd11cXFxubu6xY8cUzkNAmyo1NfXChQv/+Mc/ysvLHQ6Hw+FQPdFFnTp1stlsP/30k9PpnDdv3n333afP7/Py5ctPnTp16tSpAwcOBAUFnTp1qn///qqHuuj06dNjxozZu3dveXn5q6++ev/99zdt2lT1UCIiFotlz549mZmZFYMNHDhQh3bjq6Wmpg4bNkz1FFX169cvLS1tx44dpaWlNputU6dOoaGhCufR5ZfQR3z11VdfffVVUFDQ5SMnTpwICQlROFKFyMjI3Nzc8PDwX375pU+fPsuXL1c9kWewWCwvvvjiyJEjT548OXDgwGXLlqme6KJGjRqlpKTExcUdOnTonnvuSUpKUj1RJdu3b3c6ne3bt1c9SFUPPfRQfHz86NGji4uLe/fuffmWvioU9gOApljiAABNEdAAoCkCGgA0RUADgKYIaADQFAENAJoioAFAUwQ0AGiKgAYATRHQAKApAhoANEVAA4CmCGgA0BQBDQCaIqABQFMENABoioAGAE0R0ACgKQIaADRFQMOHfPHFF02bNt23b1/Fl0VFRa1bt05PT1c7FVATPjQWviU+Pn7nzp3r168XkfHjxwcHB7/33nuqhwKqR0DDt5SWlt55550vvvhi27Ztn3rqqd27d4eEhKgeCqheoOoBAFM1adJkyZIlY8eObdq06aJFi0hn6IwraPiiHj16OByO7777zs/PT/UsQI24SQifs2jRIqfT2bRp03nz5qmeBagNV9DwLT/88MNdd9312WefBQYGWiyWr7/++tZbb1U9FFA9Aho+xOl0PvDAA927d7fZbCISHx+/ffv2jRs3+vvzX0noiL+X8CGJiYn79+9/5ZVXKr7829/+VlBQUBHWgIa4ggYATXEFDQCaIqABQFMENABoioAGAE0R0ACgKQIaADRFQAOApghoANAUAQ0AmiKgAUBTBDQAaIqABgBNEdAAoCkCGgA0RUADgKYIaADQFAENAJoioAFAU/8ffBuqjRQlYawAAAAASUVORK5CYII=" /></p>
-<p>Como chegamos a estes valores na figura? Vamos calcular passo a
+<p>Como descobrimos o valor dos resíduos na figura? E como os usamos
+para calcular a variação residual da regressão? Vamos calcular passo a
 passo. Primeiro ajustamos a regressão:</p>
 <pre class="r"><code>dadinhos.lm &lt;- lm(Y ~ X, data=dadinhos)</code></pre>
 <p>Os intercepto e a inclinação da equação da reta ajustada são:</p>
@@ -538,15 +542,15 @@ regressão. É a variação de Y que não é explicada pela variação de X, em
 uma regressão linear. Para calculá-la somamos os valores da coluna dos
 resíduos, elevados ao quadrado:</p>
 <pre class="r"><code>V.resid &lt;- sum(dadinhos$residuo^2)</code></pre>
-<p>E vemos que de fato esta variação residual é bem menor que a
+<p>E vemos que de fato essa variação residual é bem menor que a
 total:</p>
 <pre class="r"><code>V.resid</code></pre>
 </div>
 <div id="a-variação-explicada-pela-regressão" class="section level2">
 <h2>A variação explicada pela regressão</h2>
 <p>Acima calculamos a variação total de Y e a variação que resta em Y
-depois de considerarmos um efeito linear de X sobre Y. A soma dos
-quadrados, medida que escolhemos para expressar estes componentes de
+depois de considerarmos que Y é, em média proporcional a X <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. A soma
+dos quadrados, medida que escolhemos para expressar estes componentes de
 variação, tem uma propriedade muito útil. Se consideramos o efeito
 linear de X como a única fonte de explicação para Y, podemos então dizer
 que:</p>
@@ -557,10 +561,10 @@ resultado da adição da soma dos quadrados explicados (pela regressão) e
 da soma dos quadrados dos resíduos da regressão. Em outras palavras,
 estamos repartindo, ou <strong>particionando aditivamente</strong> a
 variação total de Y em dois componentes. Este raciocínio pode ser
-generalizado para mais componentes de variação, como veremos no roteiro
-seguinte.</p>
+generalizado para mais componentes de variação, como veremos em um
+próximo roteiro.</p>
 <p>Como já calculamos <span class="math inline">\(V_{total}\)</span> e
-<span class="math inline">\(V_{resid}\)</span> obtemos a variação
+<span class="math inline">\(V_{resid}\)</span>, podemos obter a variação
 explicada pela regressão com:</p>
 <p><span class="math display">\[V_{explic} =  V_{total} - V_{resid}
 \]</span></p>
@@ -572,10 +576,18 @@ armazenamos:</p>
 <h2>E finalmente o coeficiente de determinação!</h2>
 <p>Obtemos o coeficiente de determinação dividindo <span class="math inline">\(V_{explic}\)</span> por <span class="math inline">\(V_{total}\)</span>:</p>
 <pre class="r"><code>V.expl/V.total</code></pre>
-<p>Neste caso dizemos que 91% da variação de Y é explicada por X. Nada
+<p>Esse coeficiente de determinação é o famoso <span class="math inline">\(R^2\)</span> das regressões lineares!</p>
+<p>Neste caso dizemos que 0.9% da variação de Y é explicada por X. Nada
 mal. Mas o que você poderia esperar de dados que a gente mesmo criou,
 né!</p>
 </div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Ou seja, que o valor esperado de Y é uma função linear
+de X<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
 
 

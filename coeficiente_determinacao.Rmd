@@ -75,7 +75,6 @@ dadinhos$dif <- dadinhos$Y - mean(dadinhos$Y)
 dadinhos
 ```
 
-
 Visualmente o que fizemos foi calcular a distância de cada ponto à
 média de todos os pontos, que está representada como uma linha
 horizontal azul:
@@ -87,21 +86,20 @@ Para resumir estas distâncias em um único número, as elevamos ao
 quadrado e somamos. Isso é chamado "soma dos desvios quadrados" ou
 simplesmente "soma dos quadrados".
 
-Por que elevar ao quadrado os
-desvios à média? Bom, primeiro porque a soma dos desvios é sempre
-zero... Mas também porque a soma dos desvios ao quadrado tem várias
-propriedades estatísticas úteis, como a aditividade que vamos ver em
-seguida. 
+Por que elevar ao quadrado os desvios à média? Bom, primeiro porque a
+soma dos desvios (sem elevar ao quadrado) é sempre zero... Mas também
+porque a soma dos desvios ao quadrado tem várias propriedades
+estatísticas úteis, como a aditividade que vamos ver em seguida.
 
 A soma dos quadrados descreve a variação **total** da
 variável Y. Calcule esta soma no R com o comando a seguir, e guarde em
-uma objeto chamado ''V.total'':
+uma objeto chamado `V.total`:
 
 ```{r }
 V.total <- sum(dadinhos$dif^2)
 ```
 
-Lembrando que para ver o valor que vc obteve e armazenou neste objeto,
+Lembre-se que para ver o valor que vc obteve e armazenou neste objeto,
 basta digitar o nome do objeto na linha de comando:
 
 ```{r , eval=FALSE}
@@ -111,19 +109,24 @@ V.total
 ## A variação que sobra da regressão
 
 Uma regressão linear busca explicar a variação observada em uma
-variável pela variação de outra. Se a regressão é bem sucedida,
-esperamos que reste bem menos variação sem explicação, que chamamos de
-**variação residual** da regressão. Esta variação residual é a soma
-dos quadrados dos desvios de cada ponto à linha de regressão.
+variável (resposta) pela variação de outra (preditoras ou
+explanatórias). Se a regressão é bem sucedida, esperamos que deixe
+pouca variação sem explicação. Chamamos de **variação residual** da
+regressão a parte da variação total que não é explicada pela
+regressão. Esta variação residual é a soma dos quadrados dos desvios
+de cada ponto à linha de regressão.
 
 Na figura a seguir está a linha da regressão linear de Y em função de
 X, e os desvios de cada observação em relação a esta reta de
-regressão. Os resíduos da regressão são bem menores que os desvios em
-relação à média, da figura anterior:
+regressão. Veja que resíduos da regressão são bem menores que os
+desvios em relação à média, da figura anterior. Ou seja, a regressão
+de fato explica uma parte da variação dos dados, deixando como não
+explicada uma fração menor desta variação.
 
 ![](images/coef_determ2.png)
 
-Como chegamos a estes valores na figura? Vamos calcular passo a
+Como descobrimos o valor dos resíduos na figura? E como os usamos para
+calcular a variação residual da regressão? Vamos calcular passo a
 passo. Primeiro ajustamos a regressão:
 
 
@@ -170,7 +173,7 @@ dos resíduos, elevados ao quadrado:
 V.resid <- sum(dadinhos$residuo^2)
 ```
 
-E vemos que de fato esta variação residual é bem menor que a total:
+E vemos que de fato essa variação residual é bem menor que a total:
 
 ```{r, eval=FALSE }
 V.resid
@@ -179,7 +182,8 @@ V.resid
 ## A variação explicada pela regressão
 
 Acima calculamos a variação total de Y e a variação que resta em Y
-depois de considerarmos um efeito linear de X sobre Y. A soma dos
+depois de considerarmos que Y é, em média proporcional a X ^[Ou seja,
+que o valor esperado de Y é uma função linear de X]. A soma dos
 quadrados, medida que escolhemos para expressar estes componentes de
 variação, tem uma propriedade muito útil. Se consideramos o efeito
 linear de X como a única fonte de explicação para Y, podemos então
@@ -192,9 +196,9 @@ da adição da soma dos quadrados explicados (pela regressão) e da soma
 dos quadrados dos resíduos da regressão. Em outras palavras, estamos
 repartindo, ou **particionando aditivamente** a variação total de Y em
 dois componentes. Este raciocínio pode ser generalizado para mais
-componentes de variação, como veremos no roteiro seguinte.
+componentes de variação, como veremos em um próximo roteiro.
 
-Como já calculamos $V_{total}$ e $V_{resid}$ obtemos a variação
+Como já calculamos $V_{total}$ e $V_{resid}$, podemos obter a variação
 explicada pela regressão com:
 
 $$V_{explic} =  V_{total} - V_{resid} $$
@@ -218,7 +222,9 @@ Obtemos o coeficiente de determinação dividindo $V_{explic}$ por $V_{total}$:
 V.expl/V.total
 ```
 
-Neste caso dizemos que 91% da variação de Y é explicada por X. Nada
-mal. Mas o que você poderia esperar de dados que a gente mesmo criou,
-né!
+Esse coeficiente de determinação é o famoso $R^2$ das regressões lineares!
+
+Neste caso dizemos que `r round(V.expl/V.total,1)`% da variação de Y é
+explicada por X. Nada mal. Mas o que você poderia esperar de dados que
+a gente mesmo criou, né!
 

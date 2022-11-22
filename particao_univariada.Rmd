@@ -22,13 +22,16 @@ composição e abundância (de espécies, tipos funcionais, linhagens
 ...).  Uma das abordagens da ecologia de comunidades é buscar
 regularidades nestes parâmetros estruturais, e propor explicações para
 eles. Neste roteiro vamos aprender uma das ferramentas estatísticas
-usadas para isto, chamada partição de variação.
+usadas para isto, chamada **partição de variação**.
 
-Aqui vamos analisar a estrutura espacial da abundância de uma espécie
-fictícia. Começamos com apenas uma espécie porque isso facilita
-entender os cálculos e suas interpretações. No roteiro seguinte
-mostraremos como a partição pode ser generalizada para descrever
-padrões conjuntos de abundância de muitas espécies.
+Podemos tentar entender as comunidades analisando cada uma das
+populações de cada espécie presente ou podemos tentar entender o
+conjunto de espécies como um todo. Aqui vamos analisar a estrutura
+espacial da abundância de uma espécie fictícia. Começamos com apenas
+uma espécie porque isso facilita entender os cálculos e suas
+interpretações. No roteiro seguinte mostraremos como a partição pode
+ser generalizada para descrever padrões conjuntos de abundância de
+muitas espécies.
 
 ## Preparação
 
@@ -40,13 +43,13 @@ pressione *"Enter"*:
 
 
 ```{r}
-dados <- read.csv2("https://raw.githubusercontent.com/piklprado/BIE-0320/main/data/roteiro1.csv")
+dados <- read.csv("https://raw.githubusercontent.com/piklprado/BIE-0320/main/data/roteiro1b.csv")
 ```
 
 Se não houve nenhuma mensagem de erro agora você tem no R uma tabela
 com 100 linhas e três colunas, que explicaremos a seguir. Se quiser
-verificar se a tabela foi importada, você pode usar os comandos
-seguintes para mostrar suas primeiras e últimas linhas:
+dar uma olhada na tabela, você pode usar os comandos seguintes para
+mostrar suas primeiras e últimas linhas:
 
 ```{r , eval=FALSE}
 head(dados)
@@ -59,7 +62,7 @@ A abundância de uma espécie pode variar muito, no tempo e no espaço. A
 pergunta fundamental aqui é o que causa esta variação. A partição de
 variância é um método para avaliar o quanto da variação de uma
 quantidade pode ser atribuída à variação de uma outra
-quantidade. Usamos este método para avaliar se é plausível que a
+quantidade. Usamos esse método para avaliar se é plausível que a
 abundância de uma planta em uma área varie em função da variação de um
 fator ambiental, por exemplo.
 
@@ -96,9 +99,9 @@ plot(abund ~ pH, data = dados)
 ```
 
 O gráfico sugere que a abundância da planta é proporcional ao pH. Se
-isso é verdade, deve haver uma linha reta que aproxime bem esta
+isso é verdade, deve haver uma linha reta que aproxime bem essa
 relação. A **regressão linear** é uma técnica estatística para
-encontrar esta reta. Execute no R o comando para ajustar a regressão
+encontrar essa reta. Execute no R o comando para ajustar a regressão
 da abundância em função do pH:
 
 ```{r }
@@ -113,28 +116,26 @@ abline(regr.pH)
 
 ### A variação explicada pela hipótese
 
-A regressão linear nos retorna muita informação importante sobre a
+A regressão linear nos retorna várias informações importantes sobre a
 relação que hipotetizamos. A que mais nos interessa agora é o
-**coeficiente de determinação**, expresso pela sigla $R^2$. Este
+**coeficiente de determinação**, expresso pela sigla $R^2$. Esse
 coeficiente expressa a proporção da variação total da variável
 resposta (a abundância, no caso) que é "capturada" ou "explicada" pela
 variação da variável explanatória (o pH, no caso)^[Para entender o
 $R^2$ veja [o roteiro sobre coeficiente de
 determinação](coeficiente_determinacao.html)].
 
-Para obter o $R^2$ da regressão que ajustamos acima basta executar o  comando:
+Para obter o $R^2$ da regressão que ajustamos acima basta executar o
+comando, que também guarda o valor obtido no objeto `X`:
 
 ```{r, echo=FALSE }
-X<-summary(regr.pH)$r.squared
+X <- summary(regr.pH)$r.squared
 ```
 
 ```{r, eval=FALSE }
-(X<-summary(regr.pH)$r.squared)
+(X <- summary(regr.pH)$r.squared)
 ```
-O que mostra que `r round(X*100,1)`% da variação da abundância da espécie é explicada por uma relação linear com o pH do solo superficial.
-
-Com este comando também guardamos o valor obtido em uma objeto chamado ''X''.
-
+O resultado nos mostra que `r round(X*100,1)`% da variação da abundância da espécie é explicada por uma relação linear com o pH do solo superficial.
 
 
 ## Outra hipótese: limitação à dispersão
@@ -145,25 +146,26 @@ trazida acidentalmente por tucanos, que desapareceram em seguida ^[ao
 que parece tucanos e patos amarelos dispersam apenas uma vez as
 sementes, pois morrem envenenados por elas].  A ecóloga então propôs
 que quadrados mais distantes do ponto de entrada tiveram menor chance
-de serem colonizados. Esta hipótese propõe que a variação da
+de serem colonizados. Essa hipótese propõe que a variação da
 abundância desta planta observada na parcela é resultado apenas da
 limitação à dispersão. A ecóloga criou então um mapa para expressar
-sua hipótese. Neste mapa (à direita) os quadrados com maior chance de
+sua hipótese. Nesse mapa (à direita) os quadrados com maior chance de
 receber propágulos estão em tons mais escuros:
 
 ![](images/mapas2.png)
 
 
-Este é mapa é construído atribuindo um valor a cada quadrado, que deve
-expressar um índice de abundância relativa aos demais quadrados. No
-caso, este índice pode ser interpretado como proporcional à
+Este é mapa é construído atribuindo um valor a cada quadrado, que é um
+índice de abundância relativa aos demais quadrados. No caso, esse
+índice de abundância pode ser interpretado como proporcional à
 probabilidade de estabelecimento de um propágulo. A limitação à
 dispersão se expressa pelo arranjo espacial de áreas com alta e baixa
 probabilidade de estabelecimento, de acordo com algum modelo de
 dispersão ou estabelecimento. Neste caso o modelo é bem simples:
 quanto mais distante do vértice superior direito, menor a chance de
 estabelecimento. Por isso vamos chamar o índice usado para construir o
-mapa de **variável de estrutura espacial**.
+mapa de **variável de estrutura espacial**. Os valores dessa variável
+também já estão no arquivo que importamos para o R anteriormente.
 
 Compare o mapa da direita com o mapa de variação da abundância da
 planta (esquerda). Será que a limitação à dispersão proposta é uma boa
@@ -208,8 +210,8 @@ W <- summary(regr.space)$r.squared
 ## Partição da variação entre ambiente e espaço
 
 Resumindo o que encontramos até aqui: uma variável ambiental (pH)
-explica `r round(X*100, 1)`% da variação da abundância da espécie. Mas
-uma variável de estrutura espacial explica `r round(X*100, 1)`% desta
+explica `r round(X*100)`% da variação da abundância da espécie. Mas
+uma variável de estrutura espacial explica `r round(W*100)`% dessa
 mesma variação. Como é possível que a soma dos percentuais de variação
 explicada passem de 100% ?
 
@@ -225,11 +227,11 @@ segunda hipótese. Assim, a variação explicada pelo pH contém uma parte
 de efeito espacial. Da mesma forma, uma parte da variação explicada
 pela variável espacial contém efeito do pH.
 
-A esta parte da variação compartilhada chamamos **variação ambiental
-estruturada no espaço**. No esquema abaixo esta parte da variação
+A essa parte da variação compartilhada chamamos **variação ambiental
+estruturada no espaço**. No esquema abaixo, essa parte da variação
 explicada é o componente $b$.
 
-![](images/particao.png)
+![](images/venn_particao_generico.png)
 
 O círculo da esquerda representa a variação explicada por uma variável
 $X$, no caso a variável ambiental. Vemos que a variação explicada por
@@ -244,14 +246,18 @@ uma outra fração $c$, que chamamos de **fração de variância explicada
 apenas pelo espaço**.
 
 Por fim, variação total é representada pelo
-retângulo. A parte não coberta pelos círculos é a variação que não é
+retângulo externo. A parte não coberta pelos círculos é a variação que não é
 explicada por nenhuma variável, indicada por $d$.
 
 
 
 ### Variação não explicada
 
-A variação não explicada por nenhuma variável é obtida da regressão que inclui todas as variáveis:
+Ainda falta descobrirmos a fração de variação não explicada nem pelo
+pH nem pela variável de estrutura espacial. Para fazer isso,
+precisamos primeiro ajustar a regressão que inclui a soma dos efeitos
+dessas duas variáveis:
+
 
 ```{r }
 regr.tudo <- lm(abund ~ pH + space, data = dados)
@@ -271,14 +277,16 @@ temos então que
 
 $$d = 1 - XW$$. 
 
-Assim, obtemos $d$ subtraindo o valor acima de um:
+Assim, obtemos $d$ subtraindo o valor de $XW$ de um:
 
 ```{r , echo=FALSE}
-d <- 1 - summary(regr.tudo)$r.squared
+XW <- summary(regr.tudo)$r.squared
 ```
 
+
 ```{r , eval=FALSE}
-(d <- 1 - summary(regr.tudo)$r.squared)
+XW <- summary(regr.tudo)$r.squared
+1 - XW
 ```
 
 ### Juntando as peças
@@ -293,27 +301,36 @@ $$
 \begin{array}{l}
 a + b = X \\ 
 c + b = W\\ 
-a + b + c = 1 - d 
+a + b + c = XW\\ 
+1 - d = XW
 \end{array}
 \right. 
 $$
 
 O que implica em
 
-$$ d + X + W -1 = b$$
+$$
+\left\{ 
+\begin{array}{l}
+a = XW - W\\
+b = X - a\\ 
+c = W - b\\
+d = 1 - XW\\
+\end{array}
+\right. 
+$$
 
+Usando os valores de $X$, $W$ e $XW$ que já calculamos e guardamos no R temos então:
 
-Usando os valores que já calculamos e guardamos no R temos então:
-
-**Fração devido a espaço e pH ($b$):**
-
-```{r, eval=FALSE }
-(b <- X + W + d - 1)
-```
 
 **Fração devido apenas a pH ($a$):**
 ```{r , eval=FALSE}
-(a <- X - b)
+(a <- XW - W)
+```
+
+**Fração devido a espaço e pH ($b$):**
+```{r, eval=FALSE }
+(b <- X - a)
 ```
 
 **Fração devido apenas a espaço ($c$):**
@@ -323,10 +340,32 @@ Usando os valores que já calculamos e guardamos no R temos então:
 
 **Fração não explicada ($d$):**
 ```{r , eval=FALSE}
-d
+(d <- 1 - XW)
 ```
 
-# A pergunta sobre a vida, o universo e tudo mais
+
+# Conclusão
+Abaixo o diagram de Venn da partição da variação na abundância de 
+*Non illum* nos componentes que definimos neste roteiro:
+
+![](images/venn_univar.png)
+
+E aqui um gráfico de barra com a proporção das frações $a$, $b$, $c$
+desta particão, em uma escala de $R^2 \times 100$:
+
+
+```{r , echo=FALSE}
+a <- XW-W
+b <- X-a
+c <- W-b
+barplot(matrix(c(a,b,c)*100,3,1), beside=FALSE, width = 0.05, xlim=c(0,.2),
+        axes=FALSE, ylab = "R2 x 100", ylim=c(0,75), cex.lab=1.5)
+axis(2, cex.axis=1.5)
+text(x=c(0.08,0.08,0.08), y = c(a/1.5, a+b/2, (a+b)+c/2)*100, labels = c("[a]", "[b]", "[c]"), cex=1.75)
+```
+
+
+## A pergunta sobre a vida, o universo e tudo mais
 
 Qual hipótese tem mais apoio dos resultados?
 
