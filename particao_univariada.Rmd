@@ -236,15 +236,14 @@ explicada é o componente $b$.
 
 O círculo da esquerda representa a variação explicada por uma variável
 $X$, no caso a variável ambiental. Vemos que a variação explicada por
-$X$ é a soma do mesmo componente compartilhado $b$ com um componente
-$a$ que chamamos **fração de variância explicada apenas pelo
-ambiente**.
+$X$ é a soma do componente compartilhado com a outra variável ($b$)
+com o componente $a$, que chamamos **fração de variância explicada
+apenas pelo ambiente**.
 
 Da mesma forma, o círculo da direita representa a variação explicada
-por uma segunda variável $W$, no caso o espaço. Vemos que $W$ é
-formado pelo componente compartilhado com a outra variável ($b$) e por
-uma outra fração $c$, que chamamos de **fração de variância explicada
-apenas pelo espaço**.
+por uma segunda variável $W$, no caso o espaço. Vemos que $W$ é a soma
+do mesmo componente compartilhado $b$ com uma outra fração $c$, que
+chamamos de **fração de variância explicada apenas pelo espaço**.
 
 Por fim, variação total é representada pelo retângulo externo. A parte
 não coberta pelos círculos é a variação que não é explicada por
