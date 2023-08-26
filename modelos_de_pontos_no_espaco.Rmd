@@ -165,7 +165,7 @@ Use os comandos acima para descobrir o que os parâmetros `scale` e
 `mu` da função no R fazem. Por exemplo, você pode aumentar o valor de
 `scale` em relação à primeira simulação assim:
 
-```{r  Thomas homogeneo varia kappa}
+```{r  Thomas homogeneo varia scale}
 ## Nova simulacao com scale = 0.04
 TH3 <- rThomas(kappa = 10, scale = 0.03, mu = 10, win = unit.square())
 ## Plota o grafico anterior junto com o grafico do novo padrao

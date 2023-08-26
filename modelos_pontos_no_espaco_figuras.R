@@ -12,8 +12,11 @@ pp.2 <- rpoispp(Z1)
 ## Thomas homogeneous
 pp.3 <- rThomas(kappa = mean(Z1/10), scale = 0.05, mu = 10)
 ##inhomogeneous
-Z2 <- as.im(function(x,y)10 * exp(2.5*x - 3*y), unit.square())
-pp.4 <- rThomas(kappa = function(x,y){10 * exp(2.5*x - 3*y)}, 0.05, 10, win = unit.square())
+##Z2 <- as.im(function(x,y)10 * exp(2.5*x - 3*y), unit.square())
+janela <- owin(c(10,51), c(10,77.5))
+Z2 <- as.im(volcano, W=janela)
+##pp.4 <- rThomas(kappa = function(x,y){10 * exp(2.5*x - 3*y)}, 0.05, 10, win = unit.square())
+pp.4 <- rThomas(kappa = exp(as.im(volcano)/10-15)*1.e-3, scale = 1.5, mu = 20, win = janela)
 
 
 ## Save plots
@@ -23,8 +26,8 @@ plot(pp.2, main = "")
 plot(pp.3, main = "")
 plot(pp.4, main = "")
 image(Z1, main = "")
-points(pp.2)
-image(Z2, main = "")
+points(pp.2, pch=19)
+plot(Z2, main ="")
 points(pp.4)
 dev.off()
 
