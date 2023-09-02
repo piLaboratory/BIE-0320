@@ -1,5 +1,6 @@
 ---
 title: "Modelos de distribuição espacial"
+subtitle: "Simulação de pontos no espaço"
 author: "Exercício prático da disciplina Ecologia de Populações de Comunidades Vegetais, IB-USP"
 output:
   html_document:
@@ -20,6 +21,16 @@ knitr::opts_chunk$set(
 
 # Introdução
 
+Um modelo é uma descrição de uma fenômeno, que preserva alguns dos
+aspectos relevantes deste fenômeno. Uma das classes de modelos que
+usamos para descrever como a estrutura espacial de populações de
+plantas são os que distribuem pontos num plano, segundo um conjunto de
+regras. Estes são os modelos de **padrões de pontos no espaço**. 
+
+Aqui vamos entender as regras dos quatro modelos de padrões de pontos
+no espaço usados no artigo de Linn *et al.* (2011) [^1], usando a
+linguagem de programação R.
+
 ## Preparação para o exercício
 
 Abra o programa R, clicando no ícone que está na área de trabalho do
@@ -39,14 +50,23 @@ o pacote (biblioteca de funções) que vamos usar:
 ```{r }
 library(spatstat)
 ```
-## Alguns modelos de distribuição de pontos em um plano
 
-### Poisson homogêneo
+Para realizar este roteiro, basta seguir as instruções de cada
+seção. Na maioria dos casos, você terá apenas que copiar o colar
+comandos, e interpretar os resultados.  Em alguns casos, você terá que
+modificar um pouco alguns parâmetros dos comandos. Isto estará
+explicado em cada uma das seções seguintes.
 
-O primeiro modelo que vamos usar é chamado **Poisson homogêmneo**, e
-descreve pontos distribuídos ao acaso e de forma independente em uma
-área. Execute os comandos abaixo para simular um padrão de pontos gerados
-por este processo Poisson Homogêneo, em uma área quadrada de 1x1.
+
+# Alguns modelos de distribuição de pontos em um plano
+
+## Poisson homogêneo
+
+O primeiro modelo que vamos usar é chamado **Poisson homogêneo**, e
+descreve pontos distribuídos ao acaso em uma área. Execute os comandos
+abaixo no R, para simular um padrão de pontos gerados por este
+processo Poisson Homogêneo, em uma área quadrada unitária (ou seja, de
+dimensões 1x1) [^2] 
 
 ```{r  Poisson homogeneo}
 ## Gera o padrão de um processo PH, com intensidade = 100
@@ -56,36 +76,35 @@ plot(PH)
 ```
 
 A função que simula o processo chama-se `rpoispp`. Ela tem o argumento
-`lambda`, que é a **intensidade** do processo, que é a densidade média
-de pontos por unidade de área. Depois de gerar os pontos, o código
-abaixo usa a função `plot` para fazer um gráfico do padrão de
-pontos. Experimente executar os comandos acima com outros valores de
-intensidade, para verificar o que muda no padrão de pontos gerados
-pelo modelo.
+`lambda`, que é a **intensidade** do processo. A intensidade aqui
+corresponde à densidade média de pontos por unidade de área. Depois de
+gerar os pontos, o código acima usa a função `plot` para fazer um
+gráfico do padrão de pontos. Experimente executar os comandos acima
+com outros valores de intensidade, para verificar o que muda no padrão
+de pontos gerados pelo modelo.
 
 
 Como a intensidade do padrão que geramos inicialmente é 100 e a área é
 um quadrado de 1x1, o valor **esperado** de pontos nesta área é
 de 100. Isso não quer dizer que em toda simulação teremos exatamente
-esta quantidade de pontos, e sim que em que o número médio de pontos
+esta quantidade de pontos, e sim que o **número médio** de pontos
 é 100. Ou seja, se repetirmos várias vezes a simulação deste processo,
 a média das densidades de todas as simulações corresponde à
 intensidade do processo.
 
-A figura abaixo mostra nove repetições do padrão Poisson
-Homogêneo. O número de pontos em cada simulação está escrito acima de
-cada gráfico.
+A figura abaixo mostra seis repetições do padrão Poisson Homogêneo com
+intensidade de cem. O número de pontos em cada simulação está escrito
+acima de cada gráfico.
 
-```{r  Poisson homogeneo media, echo = FALSE}
-## Nove simulações do modelo
-HP1 <- rpoispp(lambda = 100, win = unit.square(), nsim = 9)
-## Plota os nove graficos
-par(mfrow = c(3,3))
-sapply(HP1, function(x)(plot(x, main = paste0("N = ", x$n))))
-par(mfrow = c(1,1))
+```{r  Poisson homogeneo media, echo = FALSE,  eval=TRUE}
+## seis  simulações do modelo
+set.seed(3)
+HP1 <- rpoispp(lambda = 100, win = unit.square(), nsim = 6)
+names(HP1) <- sapply(HP1, function(x) paste0("N = ", x$n))
+plot(HP1, multiplot=TRUE, main = "")
 ```
 
-### Poisson não-homogêneo
+## Poisson não-homogêneo
 
 Este é um modelo de distribuição de pontos ao acaso, mas com uma
 intensidade que varia no espaço. Para exemplificar, vamos imaginar que
@@ -122,7 +141,7 @@ image(bei.extra$elev, main = "Elevação do terreno em BCI")
 ```
 
 Agora vamos criar uma função que descreve um aumento da intensidade do
-Processo Poisson com a redução da altitude, de forma exponencial. Os
+processo Poisson com a redução da altitude, de forma exponencial. Os
 números foram escolhidos para obtermos uma quantidade razoável de
 pontos neste exemplo. 
 
@@ -141,16 +160,27 @@ image(bei.extra$elev, main = "Elevação do terreno em BCI")
 points(bci.pp)
 ```
 
-### Modelo Thomas Homogêneo
+## Modelo Thomas Homogêneo
 
+No modelo de Thomas Homogêneo, os pontos são distribuídos em
+agregados, ou *clusters*. A posição de cada agregado é definida por um
+coordenada central, em torno da qual se distribuem pontos, até uma
+certa distância e com uma certa intensidade. As coordenadas centrais
+dos agregados são distribuídos por um processo Poisson Homogêneo. Os
+pontos em torno de cada coordenada central são distribuídos com uma
+intensidade que descresce com a distância ao centro do agregado[^3].
+
+Execute o comando a seguir para simular um processo de Thomas homogêneo:
 
 ```{r  Thomas homogeneo}
 TH <- rThomas(kappa = 10, scale = 0.01, mu = 10, win = unit.square())
 plot(TH)
 ```
+
 O parâmetro `kappa` da função define a intensidade de agrupamentos, ou
-seja, a densidade esperada de agregados. Veja o o que acontece se
-dobramos esta intensidade:
+seja, a densidade esperada de agregados (ou a densidade esperada de
+pontos imaginários que definem o centro de cada agrupamento). Veja o o
+que acontece se dobramos esta intensidade:
 
 ```{r  Thomas homogeneo varia kappa}
 ## Nova simulacao com kappa = 20
@@ -161,12 +191,13 @@ plot(TH, main = "Kappa = 10")
 plot(TH2, main = "Kappa = 20")
 par(mfrow = c(1,1))
 ```
-Use os comandos acima para descobrir o que os parâmetros `scale` e
-`mu` da função no R fazem. Por exemplo, você pode aumentar o valor de
-`scale` em relação à primeira simulação assim:
+
+Modifique e execute os comandos acima para descobrir o que os
+parâmetros `scale` e `mu` da função no R fazem. Por exemplo, você pode
+aumentar o valor de `scale` em relação à primeira simulação assim:
 
 ```{r  Thomas homogeneo varia scale}
-## Nova simulacao com scale = 0.04
+## Nova simulacao com scale = 0.03
 TH3 <- rThomas(kappa = 10, scale = 0.03, mu = 10, win = unit.square())
 ## Plota o grafico anterior junto com o grafico do novo padrao
 par(mfrow=c(1,2)) ## abre janela para dois graficos juntos
@@ -174,46 +205,41 @@ plot(TH, main = "scale = 0.01")
 plot(TH3, main = "scale = 0.03")
 par(mfrow = c(1,1))
 ```
-Agora tente fazer a comparação reduzindo o valor de do parâmetro `mu`.
+Agora tente fazer a comparação reduzindo o valor do parâmetro `mu`.
 
-### Modelo de Thomas não-homogêneo
+
+## Modelo de Thomas não-homogêneo
+
+No modelo de Thomas não-homogêneo, a intensidade de agrupamentos
+varia no espaço. Podemos simular este processo no R com a mesma função
+que usamos acima, mas indicando um padrão de variação para o argumento
+`kappa`. Os comandos a seguir criam um padrão com duas zonas de
+diferentes intensidades, em uma área quadrada unitária. Em seguida,
+simula um processo de Thomas não homogêneo, em que a intensidade de
+aglomerados segue este padrão de intensidade:
+
 
 ```{r  Thomas  nao homogeneo}
-padrao3 <- function(x,y) ifelse(x > 0.5, 2, 18)
+## Cria o padrão de intensidade de agregados: duas zonas com intensidades 6 e 20
+padrao3 <- function(x,y) ifelse(x > 0.5, 6, 20)
+## Simula o processo de Thomas com intensidade igual ao padrão acima
 IT <- rThomas(kappa = padrao3, scale = 0.01, mu = 10, win = unit.square())
+## Plota os pontos e a linha que divide as duas zonas de intensidade
 plot(IT)
 abline(v = 0.5, lty =2 , col = "blue")
 ```
 
-```{r  L de Ripley}
-LTH1 <- Lest(TH1)
-LIP1 <- Lest(IP1)
-plot(LTH1, iso-r ~ r)
-plot(LIP1, iso-r ~ r, add=TRUE)
+[^1]: Lin, Y. C., Chang, L. W., Yang, K. C., Wang, H. H., & Sun,
+    I. F. (2011). Point patterns of tree distribution determined by
+    habitat heterogeneity and dispersal limitation. Oecologia, 165(1),
+    175-184.
 
-## Poisson homogeneo
-HP2 <- rpoispp(lambda = 100, win = unit.square(), nsim = 100)
-LHP2 <- lapply(HP2, Lest)
-plot(LHP2[[1]], iso~r)
-abline(0,1, col="blue")
-plot(LTH1, iso-r ~ r,  main="")
-lapply(LHP2, plot, add = TRUE, iso-r~r, col="gray")
-plot(LIP1, iso-r ~ r, add = TRUE)
-## Envelopes
-HP1.e <- envelope(HP1[[1]], Lest,nsim=39)
+[^2]: As linhas precedidas de `##` são comentários para
+explicar o que cada comando faz. 
 
-## To set common limits
-a <- plot(HP1.e, . -r ~ r, limitsonly=TRUE)
-b <- plot(LTH1, iso-r ~ r, limitsonly=TRUE)
-xlim <- range(a$xlim, b$xlim)
-ylim <- range(a$ylim, b$ylim)
-##
-plot(HP1.e, . -r ~ r, legend = FALSE, main = "", xlim = xlim, ylim = ylim)
-plot(LTH1, iso-r ~ r, add = TRUE)
-## Xarada:
-TH2 <- rThomas(kappa = 10, scale = 0.1, mu = 20, win = unit.square())
-plot(TH2)
-plot(envelope(TH2, Lest, nsim =100), .-r ~r, legend=FALSE) 
-```
-
-
+[^3]: Mais precisamente, a distribuição dos pontos em cada agregado
+    segue uma normal bivariada, centrada na coordenada
+    central. Imagine um sino sobre cada coordenada central, que
+    descreve a intensidade em torno desta coordenada. É justamente a
+    menor probabilidade de pontos distantes do centro que criam o
+    agregado.

@@ -30,6 +30,42 @@ points(pp.4)
 dev.off()
 
 
+################################################################################
+## ## r  L de Ripley
+################################################################################
+
+LTH1 <- Lest(TH1)
+LIP1 <- Lest(IP1)
+plot(LTH1, iso-r ~ r)
+plot(LIP1, iso-r ~ r, add=TRUE)
+
+## Poisson homogeneo
+HP2 <- rpoispp(lambda = 100, win = unit.square(), nsim = 100)
+LHP2 <- lapply(HP2, Lest)
+plot(LHP2[[1]], iso~r)
+abline(0,1, col="blue")
+plot(LTH1, iso-r ~ r,  main="")
+lapply(LHP2, plot, add = TRUE, iso-r~r, col="gray")
+plot(LIP1, iso-r ~ r, add = TRUE)
+## Envelopes
+HP1.e <- envelope(HP1[[1]], Lest,nsim=39)
+
+## To set common limits
+a <- plot(HP1.e, . -r ~ r, limitsonly=TRUE)
+b <- plot(LTH1, iso-r ~ r, limitsonly=TRUE)
+xlim <- range(a$xlim, b$xlim)
+ylim <- range(a$ylim, b$ylim)
+##
+plot(HP1.e, . -r ~ r, legend = FALSE, main = "", xlim = xlim, ylim = ylim)
+plot(LTH1, iso-r ~ r, add = TRUE)
+## Xarada:
+TH2 <- rThomas(kappa = 10, scale = 0.1, mu = 20, win = unit.square())
+plot(TH2)
+plot(envelope(TH2, Lest, nsim =100), .-r ~r, legend=FALSE) 
+################################################################################
+
+
+
 ## Fit models for homogeneous and inhomogeneous Poisson
 m0 <- ppm(pp ~ 1)
 m1 <- ppm(pp ~ Z)
