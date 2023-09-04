@@ -1,0 +1,53 @@
+---
+title: "Modelos de distribuição espacial"
+subtitle: "Simulação de pontos no espaço"
+author: "Exercício prático da disciplina Ecologia de Populações de Comunidades Vegetais, IB-USP"
+output:
+  html_document:
+    toc: true
+    theme: united
+  pdf_document:
+    toc: true
+    highlight: zenburn
+---
+
+
+```{r settings, echo=FALSE}
+library(knitr)
+knitr::opts_chunk$set(
+  echo = TRUE, eval = FALSE)
+```
+
+# Introdução
+
+No roteiro anterior, apresentamos quatro modelos de distribuição de
+pontos num plano: Poisso homogêneo, Poisson não-homogêneo, Thompson
+homogêneo e Thompson não-homogêneo. Estes modelos são úteis para
+descrever, entre outros padrões, a estrutura espacial de plantas. Por
+exemplo, se descobrimos que o modelo Thompson homogêneo aproxima bem a
+distribuição de plântulas de uma espécie, já podemos inferir que a
+limitação à dispersão de propágulos das plantas-mãe é importante. Se o
+modelo Poisson não homogêneo aproxima bem a distribuição dos adultos
+de uma espécie de árvore, podemos suspeitar de que a sobrevivência até
+a fase adulta é afetada por algum característica do ambiente, que
+varia na área.
+
+Mas como avaliar se um destes modelos aproxima bem um padrão
+observado? Neste roteiro, vamos apresentar uma das maneiras de fazer
+isso, com o modelo mais simples, que é o Poisson homogêneo. A ideia
+geral que vamos mostrar aqui vale para os demais modelos, mas
+deixaremos para mostrar isso em outro roteiro.
+
+
+# O modelo Poisson homogêneo é uma boa aproximação?
+
+Vamos imaginar que uma ecóloga 
+
+```{r }
+library(spatstat) ## caso vc nao tenha carregado o pacote
+vit <- read.csv("data/vit_regia_coords.csv")
+## convert to meters (approx)
+vit$xm <- vit$x*0.3752972
+vit$ym <- vit$y*0.3752972
+vit.p <- ppp(vit$xm, vit$ym, window = owin(c(0,36.513*0.3752972), c(0,20.505*0.3752972)))
+```

@@ -31,3 +31,14 @@ plot(Z2, main ="")
 points(pp.4)
 dev.off()
 
+################################################################################
+## Exemplo das Vitoria-regia
+################################################################################
+vit <- read.csv("data/vit_regia_coords.csv")
+## convert to meters (approx)
+vit$xm <- vit$x*0.3752972
+vit$ym <- vit$y*0.3752972
+## point pattern
+vitoria.pp <- ppp(vit$xm, vit$ym, window = owin(c(0,36.513*0.3752972), c(0,20.505*0.3752972)))
+## Salva o arquivo em format ppp
+save(vitoria.pp, file = "data/vitoria_regia.rds")
