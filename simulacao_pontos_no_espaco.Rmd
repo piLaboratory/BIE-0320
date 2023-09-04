@@ -120,7 +120,7 @@ padrao1 <- function(x,y) ifelse(test = x > 0.5, yes = 20, no = 180)
 ## Gera o padrão de pontos
 IP <- rpoispp(lambda = padrao1, win = unit.square())
 ## Plota o grafico
-plot(IP1)
+plot(IP)
 ## Uma linha para marcar as duas regiões
 abline(v = 0.5, lty =2 , col = "blue")
 ```

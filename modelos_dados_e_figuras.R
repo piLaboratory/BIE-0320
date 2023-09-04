@@ -41,4 +41,34 @@ vit$ym <- vit$y*0.3752972
 ## point pattern
 vitoria.pp <- ppp(vit$xm, vit$ym, window = owin(c(0,36.513*0.3752972), c(0,20.505*0.3752972)))
 ## Salva o arquivo em format ppp
-save(vitoria.pp, file = "data/vitoria_regia.rds")
+##save(vitoria.pp, file = "data/vitoria_regia.rds")
+write.csv(vit, file = "data/vit_regia_coord_m.csv")
+
+################################################################################
+## L de Ripley para os exemplos do primeiro roteiro
+################################################################################
+## Poisson homogeneo
+PH <- rpoispp(lambda=100, win = unit.square())
+PH.L <- envelope(PH, fun = Lest, nsim = 1000)
+## Aqui definimos uma funcao que descreve como a intensidade muda na area
+## No caso, a itensidade muda de 180 para 20 a partir do valor da coordenada X = 0.5
+padrao1 <- function(x,y) ifelse(test = x > 0.5, yes = 20, no = 180)
+## Gera o padrão de pontos
+IP <- rpoispp(lambda = padrao1, win = unit.square())
+## L de Ripley
+IP.L <- envelope(IP, fun = Lest, nsim = 1000)
+## Thomas homogeneo
+TH <- rThomas(kappa = 15, scale = 0.02, mu = 10, win = unit.square())
+TH.L <- envelope(TH, fun = Lest, nsim = 1000)
+
+png("images/figsL_Ripley%02d.png")
+## Plota os grafico
+plot(IP, main = "")
+plot(TH, main = "")
+## Uma linha para marcar as duas regiões
+abline(v = 0.5, lty =2 , col = "blue")
+## Grafico do L
+plot(IP.L, . -r ~ r, ylab = "L de Ripley", legend=FALSE, main = "A")
+plot(TH.L, . -r ~ r, ylab = "L de Ripley", legend=FALSE, main = "B")
+plot(PH.L, . -r ~ r, ylab = "L de Ripley", legend=FALSE, main = "C")
+dev.off()
