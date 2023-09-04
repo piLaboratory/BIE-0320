@@ -64,9 +64,9 @@ TH.L <- envelope(TH, fun = Lest, nsim = 1000)
 png("images/figsL_Ripley%02d.png")
 ## Plota os grafico
 plot(IP, main = "")
-plot(TH, main = "")
 ## Uma linha para marcar as duas regiões
 abline(v = 0.5, lty =2 , col = "blue")
+plot(TH, main = "")
 ## Grafico do L
 plot(IP.L, . -r ~ r, ylab = "L de Ripley", legend=FALSE, main = "A")
 plot(TH.L, . -r ~ r, ylab = "L de Ripley", legend=FALSE, main = "B")
