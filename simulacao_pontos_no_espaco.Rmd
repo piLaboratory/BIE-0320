@@ -11,13 +11,12 @@ output:
     highlight: zenburn
 ---
 
-
 ```{r settings, echo=FALSE}
 library(knitr)
-knitr::opts_chunk$set(
-  echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+## descomente para gerar com todos os outputs
+##knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
-
 
 # Introdução
 
@@ -150,7 +149,7 @@ o modelo Poisson não-homogêneo, com esta função de intensidade. Com
 isso, simulamos uma espécie fictícia que tem maiores densidades nas
 áreas mais baixas:
 
-```{r  BCI planta fictícia}
+```{r  BCI planta ficticia}
 ## Valores de intensidade em função da elevação
 padrao2 <- exp(20 - bei.extra$elev/10)*5e-6
 ## Gera padrão de pontos com a intensidade definida acima

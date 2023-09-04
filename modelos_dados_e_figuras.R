@@ -60,6 +60,16 @@ IP.L <- envelope(IP, fun = Lest, nsim = 1000)
 ## Thomas homogeneo
 TH <- rThomas(kappa = 15, scale = 0.02, mu = 10, win = unit.square())
 TH.L <- envelope(TH, fun = Lest, nsim = 1000)
+## Vitorias regias
+## carrega um objeto com as coordenadas dos pontos de inserção dos pecíolos de cada folha
+vit <- read.csv("data/vit_regia_coord_m.csv")
+## Cria objeto com o padrão de pontos para analisar
+## Define a área de observação
+vit.w <- owin(xrange = c(0, 13.70323), yrange = c(0, 7.695469))
+## Cria o padrão de pontos nesta área
+vit.p <- ppp(x = vit$xm, y = vit$ym, window = vit.w)
+## Envelope
+vit.env <- envelope(vit.p, fun = Lest, nsim = 1000)
 
 png("images/figsL_Ripley%02d.png")
 ## Plota os grafico
@@ -71,4 +81,5 @@ plot(TH, main = "")
 plot(IP.L, . -r ~ r, ylab = "L de Ripley", legend=FALSE, main = "A")
 plot(TH.L, . -r ~ r, ylab = "L de Ripley", legend=FALSE, main = "B")
 plot(PH.L, . -r ~ r, ylab = "L de Ripley", legend=FALSE, main = "C")
+plot(vit.env, . -r ~ r, ylab = "L de Ripley", legend=FALSE, main = "D")
 dev.off()

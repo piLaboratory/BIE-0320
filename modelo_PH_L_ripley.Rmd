@@ -14,8 +14,9 @@ output:
 
 ```{r settings, echo=FALSE}
 library(knitr)
-knitr::opts_chunk$set(
-  echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+## descomente para gerar com todos os outputs
+##knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
 # Introdução
@@ -126,8 +127,8 @@ A função **L de Ripley** expressa a diferença entre este número de
 vizinhos a uma certa distância, e o número esperado por um processo
 Poisson homogêneo de mesma intensidade [^1]. Se há mais vizinhos do
 que o esperado pelo processo Poisson Homogêneo, a função L terá valor
-positivos. Se há menos vizinhos que o esperado, a função L terá
-valores negativos.
+positivo. Se há menos vizinhos que o esperado, a função L terá
+valor negativo.
 
 Os comandos abaixo calculam a função L de Ripley para o primeiro
 padrão de pontos que simulamos com o processo Poisson Homogêneo, acima:
@@ -208,5 +209,5 @@ Você consegue imaginar uma razão para este resultado?
 
 [^1]: Os detalhes do cálculo desta função estão explicados no [Portal
     EcoVirtual](http://ecovirtual.ib.usp.br/doku.php?id=ecovirt:roteiro:pad_spat). Para
-    os propósitos deste roteiro, basta pensar o L de Ripley expressa a
-    congruência com um processo Poisson Homogêneo.
+    os propósitos deste roteiro, basta lembrar que o L de Ripley aqui expressa a
+    congruência com um processo Poisson Homogêneo, em diferentes escalas.
