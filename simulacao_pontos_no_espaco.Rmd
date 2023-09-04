@@ -104,7 +104,7 @@ names(HP1) <- sapply(HP1, function(x) paste0("N = ", x$n))
 plot(HP1, multiplot=TRUE, main = "")
 ```
 
-## Poisson não-homogêneo
+## Modelo Poisson não-homogêneo
 
 Este é um modelo de distribuição de pontos ao acaso, mas com uma
 intensidade que varia no espaço. Para exemplificar, vamos imaginar que
@@ -114,18 +114,18 @@ $\lambda = 20$, e na outra metade a intensidade é de $\lambda =
 homogêneo com estas intensidades:
 
 ```{r  Poisson nao homogeneo}
-## Aqui definimos uma funcao que descreve como a intensidade muda na area
-## No caso, a itensidade muda de 180 para 20 a partir do valor da coordenada X = 0.5
+## Aqui definimos uma função que descreve como a intensidade muda na área
+## No caso, a intensidade muda de 180 para 20 a partir do valor da coordenada X = 0.5
 padrao1 <- function(x,y) ifelse(test = x > 0.5, yes = 20, no = 180)
 ## Gera o padrão de pontos
 IP <- rpoispp(lambda = padrao1, win = unit.square())
-## Plota o grafico
+## Plota o gráfico
 plot(IP)
 ## Uma linha para marcar as duas regiões
 abline(v = 0.5, lty =2 , col = "blue")
 ```
 
-Um dos usos do modelo Poisson Não-Homogêneo é descrever a variação na
+Um dos usos do modelo Poisson não-homogêneo é descrever a variação na
 densidade de plantas sob diferentes condições ambientais. Um exemplo
 pode ser a maior densidade de uma espécie de planta em áreas de menor
 altitude. Para ilustrar, vamos usar o mapa de altitude do terreno
@@ -146,12 +146,12 @@ números foram escolhidos para obtermos uma quantidade razoável de
 pontos neste exemplo. 
 
 Em seguida, vamos criar um padrão de pontos com
-o modelo Poisson Não-Homogêneo, com esta função de intensidade. Com
+o modelo Poisson não-homogêneo, com esta função de intensidade. Com
 isso, simulamos uma espécie fictícia que tem maiores densidades nas
-àreas mais baixas:
+áreas mais baixas:
 
-```{r  BCI planta ficticia}
-## Valores de intensidade em funcao da elevacao
+```{r  BCI planta fictícia}
+## Valores de intensidade em função da elevação
 padrao2 <- exp(20 - bei.extra$elev/10)*5e-6
 ## Gera padrão de pontos com a intensidade definida acima
 bci.pp <- rpoispp(lambda = padrao2)
@@ -168,7 +168,7 @@ coordenada central, em torno da qual se distribuem pontos, até uma
 certa distância e com uma certa intensidade. As coordenadas centrais
 dos agregados são distribuídos por um processo Poisson Homogêneo. Os
 pontos em torno de cada coordenada central são distribuídos com uma
-intensidade que descresce com a distância ao centro do agregado[^3].
+intensidade que decresce com a distância ao centro do agregado[^3].
 
 Execute o comando a seguir para simular um processo de Thomas homogêneo:
 
