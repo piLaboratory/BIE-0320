@@ -15,6 +15,7 @@ output:
 ```{r settings, echo=FALSE}
 library(knitr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library(spatstat)
 ## descomente para gerar com todos os outputs
 ##knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
@@ -28,12 +29,12 @@ descrever, entre outros padrões, a estrutura espacial de plantas. Por
 exemplo, se descobrimos que o modelo Thompson homogêneo aproxima bem a
 distribuição de plântulas de uma espécie, já podemos inferir que a
 limitação à dispersão de propágulos das plantas-mãe é importante. Se o
-modelo Poisson não homogêneo aproxima bem a distribuição dos adultos
+modelo Poisson não-homogêneo aproxima bem a distribuição dos adultos
 de uma espécie de árvore, podemos suspeitar de que a sobrevivência até
-a fase adulta é afetada por algum característica do ambiente, que
+a fase adulta é afetada por alguma característica do ambiente, que
 varia na área.
 
-Mas como avaliar se um destes modelos aproxima bem um padrão
+Mas como avaliar se um destes modelos é uma boa aproximação de um padrão
 observado? Neste roteiro, vamos apresentar uma das maneiras de fazer
 isso, com o modelo mais simples, que é o Poisson homogêneo. A ideia
 geral que vamos mostrar aqui vale para os demais modelos, mas
@@ -111,9 +112,9 @@ plot(rev(vit.PH), multiplot=TRUE, main = "")
 ```
 
 Os padrões gerados pelo modelo são parecidos com o padrão observado?
-Se você está em dúvida, não é a única pessoa nessa situação. De fato é
-bastante difícil fazer esta avaliação apenas com a inspeção visual
-destes padrões. Precisamos de um critério mais rigoroso. 
+Se você está em dúvida, não é a única pessoa nessa situação. De fato,
+é bastante difícil fazer essa avaliação apenas com a inspeção visual
+dos mapas de pontos. Precisamos de um critério mais rigoroso.
 
 ## A função L de Ripley
 

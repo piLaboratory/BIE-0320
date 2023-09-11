@@ -385,15 +385,15 @@ descrever, entre outros padrões, a estrutura espacial de plantas. Por
 exemplo, se descobrimos que o modelo Thompson homogêneo aproxima bem a
 distribuição de plântulas de uma espécie, já podemos inferir que a
 limitação à dispersão de propágulos das plantas-mãe é importante. Se o
-modelo Poisson não homogêneo aproxima bem a distribuição dos adultos de
+modelo Poisson não-homogêneo aproxima bem a distribuição dos adultos de
 uma espécie de árvore, podemos suspeitar de que a sobrevivência até a
-fase adulta é afetada por algum característica do ambiente, que varia na
-área.</p>
-<p>Mas como avaliar se um destes modelos aproxima bem um padrão
-observado? Neste roteiro, vamos apresentar uma das maneiras de fazer
-isso, com o modelo mais simples, que é o Poisson homogêneo. A ideia
-geral que vamos mostrar aqui vale para os demais modelos, mas deixaremos
-para mostrar isso em outro roteiro.</p>
+fase adulta é afetada por alguma característica do ambiente, que varia
+na área.</p>
+<p>Mas como avaliar se um destes modelos é uma boa aproximação de um
+padrão observado? Neste roteiro, vamos apresentar uma das maneiras de
+fazer isso, com o modelo mais simples, que é o Poisson homogêneo. A
+ideia geral que vamos mostrar aqui vale para os demais modelos, mas
+deixaremos para mostrar isso em outro roteiro.</p>
 </div>
 <div id="o-modelo-poisson-homogêneo-é-uma-boa-aproximação" class="section level1">
 <h1>O modelo Poisson homogêneo é uma boa aproximação?</h1>
@@ -450,9 +450,9 @@ vit.PH$Observado &lt;- vit.p
 ## Plota todos (o primeiro é o observado)
 plot(rev(vit.PH), multiplot=TRUE, main = &quot;&quot;)</code></pre>
 <p>Os padrões gerados pelo modelo são parecidos com o padrão observado?
-Se você está em dúvida, não é a única pessoa nessa situação. De fato é
-bastante difícil fazer esta avaliação apenas com a inspeção visual
-destes padrões. Precisamos de um critério mais rigoroso.</p>
+Se você está em dúvida, não é a única pessoa nessa situação. De fato, é
+bastante difícil fazer essa avaliação apenas com a inspeção visual dos
+mapas de pontos. Precisamos de um critério mais rigoroso.</p>
 </div>
 <div id="a-função-l-de-ripley" class="section level2">
 <h2>A função L de Ripley</h2>

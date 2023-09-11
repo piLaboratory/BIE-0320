@@ -14,20 +14,22 @@ output:
 ```{r settings, echo=FALSE}
 library(knitr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library(spatstat)
 ## descomente para gerar com todos os outputs
 ##knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
 # Introdução
 
-Um modelo é uma descrição de uma fenômeno, que preserva alguns dos
-aspectos relevantes deste fenômeno. Uma das classes de modelos que
-usamos para descrever como a estrutura espacial de populações de
-plantas são os que distribuem pontos num plano, segundo um conjunto de
-regras. Estes são os modelos de **padrões de pontos no espaço**. 
+Um modelo é uma descrição de um fenômeno, que preserva alguns dos
+aspectos relevantes deste fenômeno. Um dos tipos de modelos que
+usamos para descrever a estrutura espacial de populações de plantas
+são algorítimos que distribuem pontos num plano, segundo um conjunto
+de regras. Estes são os modelos de **distribuição de pontos no
+espaço**, ou **modelos de padrões de pontos no espaço** [^4].
 
 Aqui vamos entender as regras dos quatro modelos de padrões de pontos
-no espaço usados no artigo de Linn *et al.* (2011) [^1], usando a
+no espaço usados no artigo de Linn *et al.* (2011), usando a
 linguagem de programação R.
 
 ## Preparação para o exercício
@@ -71,7 +73,7 @@ dimensões 1x1) [^2]
 ## Gera o padrão de um processo PH, com intensidade = 100
 PH <- rpoispp(lambda = 100, win = unit.square())
 ## Plota o padrão de pontos
-plot(PH)
+plot(PH, main = "Poisson homogêneo")
 ```
 
 A função que simula o processo chama-se `rpoispp`. Ela tem o argumento
@@ -119,7 +121,7 @@ padrao1 <- function(x,y) ifelse(test = x > 0.5, yes = 20, no = 180)
 ## Gera o padrão de pontos
 IP <- rpoispp(lambda = padrao1, win = unit.square())
 ## Plota o gráfico
-plot(IP)
+plot(IP, main = "Poisson não-homogêneo")
 ## Uma linha para marcar as duas regiões
 abline(v = 0.5, lty =2 , col = "blue")
 ```
@@ -127,10 +129,10 @@ abline(v = 0.5, lty =2 , col = "blue")
 Um dos usos do modelo Poisson não-homogêneo é descrever a variação na
 densidade de plantas sob diferentes condições ambientais. Um exemplo
 pode ser a maior densidade de uma espécie de planta em áreas de menor
-altitude. Para ilustrar, vamos usar o mapa de altitude do terreno
-na parcela Permanente de Barro Colorado, no Panamá. Esta é uma área de
-500 x 1000m, na qual todas as árvores acima de 1 cm de diâmetro são
-monitoradas desde 1983.
+altitude. Para ilustrar, vamos usar o mapa de altitude do terreno na
+[parcela permanente de Barro Colorado](http://ctfs.si.edu/webatlas/datasets/bci/), 
+no Panamá. Esta é uma área de 500 x 1000m, na qual todas as árvores acima de 1 cm de
+diâmetro são monitoradas desde 1983.
 
 O comando abaixo mostra o mapa de altitude da parcela. A escala de cor
 mostra a altitude acima do nível do mar, em metros.
@@ -139,20 +141,36 @@ mostra a altitude acima do nível do mar, em metros.
 image(bei.extra$elev, main = "Elevação do terreno em BCI")
 ```
 
-Agora vamos criar uma função que descreve um aumento da intensidade do
-processo Poisson com a redução da altitude, de forma exponencial. Os
-números foram escolhidos para obtermos uma quantidade razoável de
-pontos neste exemplo. 
+Agora vamos criar uma função que descreve um decréscimo da intensidade
+do processo Poisson com altitude, de forma exponencial. Os números
+foram escolhidos para obtermos uma quantidade razoável de pontos neste
+exemplo. Os comandos abaixo calculam os valores de intensidade para a
+altitude de cada região da parcela:
 
-Em seguida, vamos criar um padrão de pontos com
-o modelo Poisson não-homogêneo, com esta função de intensidade. Com
-isso, simulamos uma espécie fictícia que tem maiores densidades nas
-áreas mais baixas:
+```{r  BCI padrao ficticio}
+## Valores de intensidade em função da elevação na parcela
+padrao2 <- exp(20 - bei.extra$elev/10)*5e-6
+```
+
+Ou seja, criamos um padrão fictício de variação da intensidade, que
+decai exponencialmente emfunção da altitude. A relação entre
+intensidade do processo e altitude segundo este padrão fictício está
+no gráfico abaixo:
+
+```{r  BCI  relacao intensidade x altitude, eval=TRUE, echo=FALSE}
+plot(bei.extra$elev$v, I(padrao2$v*25),
+     main = "Padrão fictício de intensidade em BCI",
+     xlab = "Altitude em relação ao nível do mar (m)",
+     ylab = "Intensidade por m2")
+```
+
+
+Agora vamos simular um padrão de pontos com o modelo Poisson
+não-homogêneo, com esta função de intensidade. Com isso, simulamos uma
+espécie fictícia que tem maiores densidades nas áreas mais baixas:
 
 ```{r  BCI planta ficticia}
-## Valores de intensidade em função da elevação
-padrao2 <- exp(20 - bei.extra$elev/10)*5e-6
-## Gera padrão de pontos com a intensidade definida acima
+## Gera padrão de pontos com a intensidade definida pelo padrão
 bci.pp <- rpoispp(lambda = padrao2)
 ## Plota o mapa do terreno e os pontos
 image(bei.extra$elev, main = "Elevação do terreno em BCI")
@@ -162,36 +180,37 @@ points(bci.pp)
 ## Modelo Thomas Homogêneo
 
 No modelo de Thomas Homogêneo, os pontos são distribuídos em
-agregados, ou *clusters*. A posição de cada agregado é definida por um
+agregados, ou *clusters*. A posição de cada agregado é definida por uma
 coordenada central, em torno da qual se distribuem pontos, até uma
-certa distância e com uma certa intensidade. As coordenadas centrais
-dos agregados são distribuídos por um processo Poisson Homogêneo. Os
-pontos em torno de cada coordenada central são distribuídos com uma
-intensidade que decresce com a distância ao centro do agregado[^3].
+certa distância do centro, e com uma certa intensidade. As coordenadas
+centrais dos agregados são distribuídas por um processo Poisson
+Homogêneo. Os pontos em torno de cada coordenada central são
+distribuídos com uma intensidade que decresce com a distância ao
+centro do agregado[^3].
 
 Execute o comando a seguir para simular um processo de Thomas homogêneo:
 
 ```{r  Thomas homogeneo}
 TH <- rThomas(kappa = 10, scale = 0.01, mu = 10, win = unit.square())
-plot(TH)
+plot(TH, main = "Thomas homogêneo")
 ```
 
 O parâmetro `kappa` da função define a intensidade de agrupamentos, ou
 seja, a densidade esperada de agregados (ou a densidade esperada de
 pontos imaginários que definem o centro de cada agrupamento). Veja o o
-que acontece se dobramos esta intensidade:
+que acontece se triplicamos esta intensidade:
 
 ```{r  Thomas homogeneo varia kappa}
 ## Nova simulacao com kappa = 20
-TH2 <- rThomas(kappa = 20, scale = 0.01, mu = 10, win = unit.square())
+TH2 <- rThomas(kappa = 30, scale = 0.01, mu = 10, win = unit.square())
 ## Plota o grafico anterior junto com o grafico do novo padrao
 par(mfrow=c(1,2)) ## abre janela para dois graficos juntos
 plot(TH, main = "Kappa = 10")
-plot(TH2, main = "Kappa = 20")
+plot(TH2, main = "Kappa = 30")
 par(mfrow = c(1,1))
 ```
 
-Modifique e execute os comandos acima para descobrir o que os
+Podemos modificar os comandos acima para descobrir o que os
 parâmetros `scale` e `mu` da função no R fazem. Por exemplo, você pode
 aumentar o valor de `scale` em relação à primeira simulação assim:
 
@@ -228,10 +247,13 @@ plot(IT)
 abline(v = 0.5, lty =2 , col = "blue")
 ```
 
-[^1]: Lin, Y. C., Chang, L. W., Yang, K. C., Wang, H. H., & Sun,
+# Referências bibliográficas
+
+Lin, Y. C., Chang, L. W., Yang, K. C., Wang, H. H., & Sun,
     I. F. (2011). Point patterns of tree distribution determined by
     habitat heterogeneity and dispersal limitation. Oecologia, 165(1),
     175-184.
+
 
 [^2]: As linhas precedidas de `##` são comentários para
 explicar o que cada comando faz. 
@@ -242,3 +264,5 @@ explicar o que cada comando faz.
     descreve a intensidade em torno desta coordenada. É justamente a
     menor probabilidade de pontos distantes do centro que criam o
     agregado.
+
+[^4]: Em inglês *point process models* e *point pattern models*. 
