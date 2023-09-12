@@ -205,8 +205,8 @@ que acontece se triplicamos esta intensidade:
 TH2 <- rThomas(kappa = 30, scale = 0.01, mu = 10, win = unit.square())
 ## Plota o grafico anterior junto com o grafico do novo padrao
 par(mfrow=c(1,2)) ## abre janela para dois graficos juntos
-plot(TH, main = "Kappa = 10")
-plot(TH2, main = "Kappa = 30")
+plot(TH, main = "Kappa original")
+plot(TH2, main = "Kappa alterado")
 par(mfrow = c(1,1))
 ```
 
@@ -219,12 +219,21 @@ aumentar o valor de `scale` em relação à primeira simulação assim:
 TH3 <- rThomas(kappa = 10, scale = 0.03, mu = 10, win = unit.square())
 ## Plota o grafico anterior junto com o grafico do novo padrao
 par(mfrow=c(1,2)) ## abre janela para dois graficos juntos
-plot(TH, main = "scale = 0.01")
-plot(TH3, main = "scale = 0.03")
+plot(TH, main = "scale original")
+plot(TH3, main = "scale alterado")
 par(mfrow = c(1,1))
 ```
 Agora tente fazer a comparação reduzindo o valor do parâmetro `mu`.
 
+#### DICA
+Para mudar o valor de um parâmetro na simulação de padrão de
+pontos, você deve alterar os argumentos do primeiro comando:
+
+`TH3 <- rThomas(kappa = 10, scale = 0.03, mu = 10, win = unit.square())`
+
+Este comando cria um objeto chamado `TH3`, com o padrão. Os comandos
+seguintes apenas criam um gráfico com o padrão criado com este
+comando.
 
 ## Modelo de Thomas não-homogêneo
 

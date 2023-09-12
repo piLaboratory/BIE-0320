@@ -518,8 +518,8 @@ agrupamento). Veja o o que acontece se triplicamos esta intensidade:</p>
 TH2 &lt;- rThomas(kappa = 30, scale = 0.01, mu = 10, win = unit.square())
 ## Plota o grafico anterior junto com o grafico do novo padrao
 par(mfrow=c(1,2)) ## abre janela para dois graficos juntos
-plot(TH, main = &quot;Kappa = 10&quot;)
-plot(TH2, main = &quot;Kappa = 30&quot;)
+plot(TH, main = &quot;Kappa original&quot;)
+plot(TH2, main = &quot;Kappa alterado&quot;)
 par(mfrow = c(1,1))</code></pre>
 <p>Podemos modificar os comandos acima para descobrir o que os
 parâmetros <code>scale</code> e <code>mu</code> da função no R fazem.
@@ -529,11 +529,20 @@ Por exemplo, você pode aumentar o valor de <code>scale</code> em relação
 TH3 &lt;- rThomas(kappa = 10, scale = 0.03, mu = 10, win = unit.square())
 ## Plota o grafico anterior junto com o grafico do novo padrao
 par(mfrow=c(1,2)) ## abre janela para dois graficos juntos
-plot(TH, main = &quot;scale = 0.01&quot;)
-plot(TH3, main = &quot;scale = 0.03&quot;)
+plot(TH, main = &quot;scale original&quot;)
+plot(TH3, main = &quot;scale alterado&quot;)
 par(mfrow = c(1,1))</code></pre>
 <p>Agora tente fazer a comparação reduzindo o valor do parâmetro
 <code>mu</code>.</p>
+<div id="dica" class="section level4">
+<h4>DICA</h4>
+<p>Para mudar o valor de um parâmetro na simulação de padrão de pontos,
+você deve alterar os argumentos do primeiro comando:</p>
+<p><code>TH3 &lt;- rThomas(kappa = 10, scale = 0.03, mu = 10, win = unit.square())</code></p>
+<p>Este comando cria um objeto chamado <code>TH3</code>, com o padrão.
+Os comandos seguintes apenas criam um gráfico com o padrão criado com
+este comando.</p>
+</div>
 </div>
 <div id="modelo-de-thomas-não-homogêneo" class="section level2">
 <h2>Modelo de Thomas não-homogêneo</h2>
