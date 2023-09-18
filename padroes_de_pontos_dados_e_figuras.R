@@ -101,30 +101,68 @@ write.csv(as.data.frame(p2), file = "data/EP_roteiro3_padrao2.csv", row.names=FA
 ## Padrao Thomas não homogêneo para desafio
 p3 <- rThomas(kappa = 0.05, scale = 2.5, mu = exp(MO.solo/25),  win = owin(c(0,100), c(0,100)))
 write.csv(as.data.frame(p3), file = "data/EP_roteiro3_padrao3.csv", row.names=FALSE)
+## Ilustracao do AIC
+carac <- readPNG("images/caracol.png")[,,1]
+carac <-  rotate(as.im(abs(carac-1)))
+carac1 <- blur(carac, sigma = 2.5)
+carac2 <- blur(carac, sigma = 5)
+c.p1 <- rpoispp(carac*0.75)
+c.p1.m1 <- ppm(c.p1 ~ carac1)
+c.p1.m2 <- ppm(c.p1 ~ carac2)
+png("images/roteiro_EP_AIC_%01d.png")
+plot(carac, col=grey.colors(100)[100:1], main = "Padrão caracol - Intensidade real")
+plot(c.p1, pch=19, cex=0.25, main = "Pontos gerados com a intensidade padrão caracol")
+plot(carac2, col=grey.colors(100)[100:1])
+plot(predict(c.p1.m1), col=grey.colors(100)[100:1],
+     main = paste0("Modelo 1 - Intensidade prevista \n AIC = ", round(AIC(c.p1.m1))))
+plot(predict(c.p1.m2), col=grey.colors(100)[100:1],
+     main = paste0("Modelo 2 - Intensidade prevista \n AIC = ", round(AIC(c.p1.m2))))
+dev.off()
+
+png("images/roteiro_EP_AIC_5.png", width = 960)
+par(mfrow=c(1,2))
+plot(predict(c.p1.m1), col=grey.colors(100)[100:1],
+     main = paste0("Intensidade prevista pelo Modelo 1 \n AIC = ", round(AIC(c.p1.m1))))
+plot(predict(c.p1.m2), col=grey.colors(100)[100:1],
+     main = paste0("Intensidade prevista pelo Modelo 2 \n AIC = ", round(AIC(c.p1.m2))))
+dev.off()
 
 ################################################################################
 ## Inicio dos codigos do exercício
 ################################################################################
-## carrega dados solo
-MO.solo <- as.im(as.matrix(read.table("data/EP_roteiro3_solo.txt")), owin(c(0,100), c(0,100)), eps=1)
-plot(MO.solo, main = "% de M.O. no solo superficial")
+URL <- "https://github.com/piLaboratory/BIE-0320/raw/main/data/"
 ## Carrega padrao de pontos
-p1 <- as.ppp(read.csv("data/EP_roteiro3_padrao1.csv"), owin(c(0,100), c(0,100)))
+p1 <-
+    paste0(URL, "EP_roteiro3_padrao1.csv") |> 
+    read.csv() |>
+    as.ppp( W = owin(c(0,100), c(0,100), unitname = "m"))
 plot(p1, main = "Padrão 1")
+## carrega dados solo
+MO.solo <-
+    paste0(URL,"EP_roteiro3_solo.txt") |> 
+    read.table() |>
+    as.matrix() |>
+    as.im( W = owin(c(0,100), c(0,100)), eps=1 )
+
+plot(MO.solo, main = "% de M.O. no solo superficial")
+
 ## Modelos
 ## Poisson homogeneo
 p1.m1 <- ppm(p1)
 p1.m1.L <- envelope(p1.m1, fun = Lest)
-plot(p1.m1.L, . -r ~ r, ylab = "L de Ripley", legend=FALSE, main = "")
+plot(p1.m1.L, . -r ~ r, ylab = "L de Ripley", legend=FALSE, main = "Padrão 1 - Modelo Poisson Homogêneo")
 ## Poisson nao homogeneo
 p1.m2 <- ppm(p1 ~ MO.solo)
 p1.m2.L <- envelope(p1.m2, fun = Lest)
-plot(p1.m2.L, . -r ~ r, ylab = "L de Ripley", legend=FALSE, main = "")
+plot(p1.m2.L, . -r ~ r, ylab = "L de Ripley", legend=FALSE, main = "Padrão 1 - Modelo Poisson não-homogêneo")
+(cfs <- coef(p1.m2))
+curve(exp(cfs[1] + cfs[2]*x), 20,70, main = "Padrão 1 - Intensidade prevista Poisson não-homogêneo",
+      ylab = "Intensidade / m2", xlab = "% M.O. solo superficial")
 ## AIC
 AIC(p1.m1)
 AIC(p1.m2)
 ## Previsto pelo modelo selecionado
-plot(predict(p1.m2), main = "Padrão 1, previsto Poisson não-homogêneo")
+plot(predict(p1.m2), main = "Padrão 1 -  previsto Poisson não-homogêneo")
 points(p1, cex=.5)
 ## Para ilustrar o AIC: um padrao dificil de identificar
 p2 <- as.ppp(read.csv("data/EP_roteiro3_padrao2.csv"), owin(c(0,100), c(0,100)))
