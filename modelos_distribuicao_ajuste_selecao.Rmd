@@ -1,0 +1,46 @@
+---
+title: "Modelos de distribuição espacial"
+subtitle: "Ajuste e comparação de modelos"
+author: "Exercício prático da disciplina Ecologia de Populações de Comunidades Vegetais, IB-USP"
+output:
+  html_document:
+    toc: true
+    theme: united
+  pdf_document:
+    toc: true
+    highlight: zenburn
+---
+
+
+```{r settings, echo=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library(spatstat)
+## descomente para gerar com todos os outputs
+##knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
+```
+
+# Introdução
+
+No roteiro anterior, vimos como a função de L de Ripley pode ser usada
+para avaliar se um padrão de distribuição de pontos no espaço
+corresponde ao esperado por um processo Poisson homogêneo. Neste
+roteiro, vamos generalizar esta ideia, mostrando duas maneiras pela
+qual podemos avaliar o ajuste de qualquer modelo de distribuição de
+pontos a um padrão espacial.
+
+
+# Ajuste de modelos a padrões de pontos no espaço
+
+
+
+```{r bei counts}
+bei.df <- as.data.frame(bci.pp)
+bei.elev.df <- as.data.frame(bei.extra$elev)
+bei.count <- quadratcount(bci.pp, nx = 101 , ny = 201)
+bei.count.df <- as.data.frame(bei.count)
+plot(bei.count.df$Freq ~  bei.elev.df$value)
+
+
+```
+
