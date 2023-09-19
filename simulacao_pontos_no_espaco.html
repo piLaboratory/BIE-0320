@@ -510,10 +510,20 @@ do agregado<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
 homogêneo:</p>
 <pre class="r"><code>TH &lt;- rThomas(kappa = 10, scale = 0.01, mu = 10, win = unit.square())
 plot(TH, main = &quot;Thomas homogêneo&quot;)</code></pre>
-<p>O parâmetro <code>kappa</code> da função define a intensidade de
+<p>O parâmetro <code>mu</code> da função <code>rThomas</code> define a
+intensidade de pontos em cada agrupamento. Veja o que acontece se
+triplicamos esta intensidade:</p>
+<pre class="r"><code>## Nova simulacao com mu = 30
+TH1b &lt;- rThomas(kappa = 10, scale = 0.01, mu = 30, win = unit.square())
+## Plota o grafico anterior junto com o grafico do novo padrao
+par(mfrow=c(1,2)) ## abre janela para dois graficos juntos
+plot(TH, main = &quot;mu original&quot;)
+plot(TH1b, main = &quot;mu alterado&quot;)
+par(mfrow = c(1,1))</code></pre>
+<p>Já o parâmetro <code>kappa</code> da função define a intensidade de
 agrupamentos, ou seja, a densidade esperada de agregados (ou a densidade
 esperada de pontos imaginários que definem o centro de cada
-agrupamento). Veja o o que acontece se triplicamos esta intensidade:</p>
+agrupamento). Veja o que acontece se triplicamos esta intensidade:</p>
 <pre class="r"><code>## Nova simulacao com kappa = 20
 TH2 &lt;- rThomas(kappa = 30, scale = 0.01, mu = 10, win = unit.square())
 ## Plota o grafico anterior junto com o grafico do novo padrao
@@ -521,10 +531,10 @@ par(mfrow=c(1,2)) ## abre janela para dois graficos juntos
 plot(TH, main = &quot;Kappa original&quot;)
 plot(TH2, main = &quot;Kappa alterado&quot;)
 par(mfrow = c(1,1))</code></pre>
-<p>Podemos modificar os comandos acima para descobrir o que os
-parâmetros <code>scale</code> e <code>mu</code> da função no R fazem.
-Por exemplo, você pode aumentar o valor de <code>scale</code> em relação
-à primeira simulação assim:</p>
+<p>O terceiro parâmetro do processo de Thomas homogêneo é chamado
+<code>scale</code> no R. Use os comandos abaixo para umentar o valor de
+<code>scale</code> em relação à primeira simulação, e descobrir o que
+isso causa:</p>
 <pre class="r"><code>## Nova simulacao com scale = 0.03
 TH3 &lt;- rThomas(kappa = 10, scale = 0.03, mu = 10, win = unit.square())
 ## Plota o grafico anterior junto com o grafico do novo padrao
@@ -532,31 +542,21 @@ par(mfrow=c(1,2)) ## abre janela para dois graficos juntos
 plot(TH, main = &quot;scale original&quot;)
 plot(TH3, main = &quot;scale alterado&quot;)
 par(mfrow = c(1,1))</code></pre>
-<p>Agora tente fazer a comparação reduzindo o valor do parâmetro
-<code>mu</code>.</p>
-<div id="dica" class="section level4">
-<h4>DICA</h4>
-<p>Para mudar o valor de um parâmetro na simulação de padrão de pontos,
-você deve alterar os argumentos do primeiro comando:</p>
-<p><code>TH3 &lt;- rThomas(kappa = 10, scale = 0.03, mu = 10, win = unit.square())</code></p>
-<p>Este comando cria um objeto chamado <code>TH3</code>, com o padrão.
-Os comandos seguintes apenas criam um gráfico com o padrão criado com
-este comando.</p>
-</div>
 </div>
 <div id="modelo-de-thomas-não-homogêneo" class="section level2">
 <h2>Modelo de Thomas não-homogêneo</h2>
-<p>No modelo de Thomas não-homogêneo, a intensidade de agrupamentos
-varia no espaço. Podemos simular este processo no R com a mesma função
-que usamos acima, mas indicando um padrão de variação para o argumento
-<code>kappa</code>. Os comandos a seguir criam um padrão com duas zonas
-de diferentes intensidades, em uma área quadrada unitária. Em seguida,
-simula um processo de Thomas não homogêneo, em que a intensidade de
+<p>No modelo de Thomas não-homogêneo, a intensidade de pontos
+<strong>nos agrupamentos</strong> varia no espaço. Podemos simular este
+processo no R com a mesma função que usamos acima, mas indicando um
+padrão de variação para o argumento <code>mu</code>.</p>
+<p>Os comandos a seguir criam um padrão com duas zonas de diferentes
+intensidades, em uma área quadrada unitária. Em seguida, simula um
+processo de Thomas não homogêneo, em que a intensidade de pontos nos
 aglomerados segue este padrão de intensidade:</p>
-<pre class="r"><code>## Cria o padrão de intensidade de agregados: duas zonas com intensidades 6 e 20
-padrao3 &lt;- function(x,y) ifelse(x &gt; 0.5, 6, 20)
-## Simula o processo de Thomas com intensidade igual ao padrão acima
-IT &lt;- rThomas(kappa = padrao3, scale = 0.01, mu = 10, win = unit.square())
+<pre class="r"><code>## Cria o padrão de intensidade de agregados: duas zonas com intensidades 5 e 20
+padrao3 &lt;- function(x,y) ifelse(x &gt; 0.5, 5, 20)
+## Simula o processo de Thomas com intensidade de pontos no cluster igual ao padrão acima
+IT &lt;- rThomas(kappa = 20, scale = 0.01, mu = padrao3, win = unit.square())
 ## Plota os pontos e a linha que divide as duas zonas de intensidade
 plot(IT)
 abline(v = 0.5, lty =2 , col = &quot;blue&quot;)</code></pre>

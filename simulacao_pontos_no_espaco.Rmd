@@ -158,6 +158,7 @@ intensidade do processo e altitude segundo este padrão fictício está
 no gráfico abaixo:
 
 ```{r  BCI  relacao intensidade x altitude, eval=TRUE, echo=FALSE}
+padrao2 <- exp(20 - bei.extra$elev/10)*5e-6
 plot(bei.extra$elev$v, I(padrao2$v*25),
      main = "Padrão fictício de intensidade em BCI",
      xlab = "Altitude em relação ao nível do mar (m)",
@@ -195,9 +196,22 @@ TH <- rThomas(kappa = 10, scale = 0.01, mu = 10, win = unit.square())
 plot(TH, main = "Thomas homogêneo")
 ```
 
-O parâmetro `kappa` da função define a intensidade de agrupamentos, ou
-seja, a densidade esperada de agregados (ou a densidade esperada de
-pontos imaginários que definem o centro de cada agrupamento). Veja o o
+O parâmetro `mu` da função `rThomas` define a intensidade de pontos em
+cada agrupamento. Veja o que acontece se triplicamos esta intensidade:
+
+```{r  Thomas homogeneo varia mu}
+## Nova simulacao com mu = 30
+TH1b <- rThomas(kappa = 10, scale = 0.01, mu = 30, win = unit.square())
+## Plota o grafico anterior junto com o grafico do novo padrao
+par(mfrow=c(1,2)) ## abre janela para dois graficos juntos
+plot(TH, main = "mu original")
+plot(TH1b, main = "mu alterado")
+par(mfrow = c(1,1))
+```
+
+Já o parâmetro `kappa` da função define a intensidade de agrupamentos,
+ou seja, a densidade esperada de agregados (ou a densidade esperada de
+pontos imaginários que definem o centro de cada agrupamento). Veja o
 que acontece se triplicamos esta intensidade:
 
 ```{r  Thomas homogeneo varia kappa}
@@ -210,9 +224,9 @@ plot(TH2, main = "Kappa alterado")
 par(mfrow = c(1,1))
 ```
 
-Podemos modificar os comandos acima para descobrir o que os
-parâmetros `scale` e `mu` da função no R fazem. Por exemplo, você pode
-aumentar o valor de `scale` em relação à primeira simulação assim:
+O terceiro parâmetro do processo de Thomas homogêneo é chamado `scale` no R. 
+Use os comandos abaixo para umentar o valor de `scale` em
+relação à primeira simulação, e descobrir o que isso causa:
 
 ```{r  Thomas homogeneo varia scale}
 ## Nova simulacao com scale = 0.03
@@ -223,34 +237,26 @@ plot(TH, main = "scale original")
 plot(TH3, main = "scale alterado")
 par(mfrow = c(1,1))
 ```
-Agora tente fazer a comparação reduzindo o valor do parâmetro `mu`.
-
-#### DICA
-Para mudar o valor de um parâmetro na simulação de padrão de
-pontos, você deve alterar os argumentos do primeiro comando:
-
-`TH3 <- rThomas(kappa = 10, scale = 0.03, mu = 10, win = unit.square())`
-
-Este comando cria um objeto chamado `TH3`, com o padrão. Os comandos
-seguintes apenas criam um gráfico com o padrão criado com este
-comando.
 
 ## Modelo de Thomas não-homogêneo
 
-No modelo de Thomas não-homogêneo, a intensidade de agrupamentos
-varia no espaço. Podemos simular este processo no R com a mesma função
-que usamos acima, mas indicando um padrão de variação para o argumento
-`kappa`. Os comandos a seguir criam um padrão com duas zonas de
-diferentes intensidades, em uma área quadrada unitária. Em seguida,
-simula um processo de Thomas não homogêneo, em que a intensidade de
-aglomerados segue este padrão de intensidade:
+No modelo de Thomas não-homogêneo, a intensidade de pontos **nos
+agrupamentos** varia no espaço. Podemos simular este processo no R com
+a mesma função que usamos acima, mas indicando um padrão de variação
+para o argumento `mu`. 
+
+Os comandos a seguir criam um padrão com duas
+zonas de diferentes intensidades, em uma área quadrada unitária. Em
+seguida, simula um processo de Thomas não homogêneo, em que a
+intensidade de pontos nos aglomerados segue este padrão de
+intensidade:
 
 
 ```{r  Thomas  nao homogeneo}
-## Cria o padrão de intensidade de agregados: duas zonas com intensidades 6 e 20
-padrao3 <- function(x,y) ifelse(x > 0.5, 6, 20)
-## Simula o processo de Thomas com intensidade igual ao padrão acima
-IT <- rThomas(kappa = padrao3, scale = 0.01, mu = 10, win = unit.square())
+## Cria o padrão de intensidade de agregados: duas zonas com intensidades 5 e 20
+padrao3 <- function(x,y) ifelse(x > 0.5, 5, 20)
+## Simula o processo de Thomas com intensidade de pontos no cluster igual ao padrão acima
+IT <- rThomas(kappa = 20, scale = 0.01, mu = padrao3, win = unit.square())
 ## Plota os pontos e a linha que divide as duas zonas de intensidade
 plot(IT)
 abline(v = 0.5, lty =2 , col = "blue")
