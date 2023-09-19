@@ -70,7 +70,7 @@ p1.m1 <- ppm(p1)
 ```
 
 O resultado deste ajuste é a estimativa da intensidade do processo,
-em escala logarítimica. O comando a seguir exibe este valor:
+em escala logarítmica. O comando a seguir exibe este valor:
 
 
 ```{r log int PH p1}
@@ -98,7 +98,7 @@ por toda a área, que corresponde à densidade observada de pontos. Mas
 será que este é um bom modelo para estes dados? Uma maneira de avaliar
 isso é comparar os valores da função L de Ripley esperada pelo modelo
 Poisson Homogêneo com os valores desta função obtidas dos pontos. Os
-comandos abaixo usam o modelo que ajusatmos para fazer isso, e exibir
+comandos abaixo usam o modelo que ajustamos para fazer isso, e exibir
 o gráfico que compara os valores de L de Ripley:
 
 
@@ -124,7 +124,7 @@ acaso, mas agregadas.
 O que pode estar acontecendo? Uma possibilidade é que a intensidade
 não é constante, mas varia pela área. Assim, as plantas estariam
 agregadas em algumas regiões da área, mesmo que isso não seja tão
-fácil de preceber no mapa de pontos.
+fácil de perceber no mapa de pontos.
 
 Vamos supor que a ecóloga que fez esta pesquisa propôs que a matéria
 orgânica no solo poderia aumentar a sobrevivência dessas plantas. Uma
@@ -271,8 +271,8 @@ modelos estatísticos.
 [^1]: Mais especificamente, este modelo ajusta uma relação exponencial
     do tipo $\lambda = e^{a_0 + a_1 X}$, em que $\lambda$ é a
     intensidade do processo, $X$ é a variável preditora ou
-    independente (no caso o conteúdo de matéria orgância) e $a_0$ e
-    $a_1$ são os coeficientes da função, cujos valors é estimado pela
+    independente (no caso o conteúdo de matéria orgânica) e $a_0$ e
+    $a_1$ são os coeficientes da função, cujos valores é estimado pela
     rotina de ajuste do modelo.
 
 [^2]: Não se preocupe com o que sejam estas variáveis, pois o

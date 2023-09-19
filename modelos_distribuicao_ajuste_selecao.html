@@ -422,7 +422,7 @@ dados</strong>. No pacote do R que usamos, a função <code>ppm</code> faz
 o ajuste de um modelo Poisson homogêneo com o comando:</p>
 <pre class="r"><code>p1.m1 &lt;- ppm(p1)</code></pre>
 <p>O resultado deste ajuste é a estimativa da intensidade do processo,
-em escala logarítimica. O comando a seguir exibe este valor:</p>
+em escala logarítmica. O comando a seguir exibe este valor:</p>
 <pre class="r"><code>(cf1 &lt;- coef(p1.m1))</code></pre>
 <p>Portanto, o valor estimado da intensidade pelo modelo Poisson
 Homogêneo é a exponencial deste valor :</p>
@@ -435,7 +435,7 @@ por toda a área, que corresponde à densidade observada de pontos. Mas
 será que este é um bom modelo para estes dados? Uma maneira de avaliar
 isso é comparar os valores da função L de Ripley esperada pelo modelo
 Poisson Homogêneo com os valores desta função obtidas dos pontos. Os
-comandos abaixo usam o modelo que ajusatmos para fazer isso, e exibir o
+comandos abaixo usam o modelo que ajustamos para fazer isso, e exibir o
 gráfico que compara os valores de L de Ripley:</p>
 <pre class="r"><code>## Calcula a funcao L e seus envelope de confianca
 p1.m1.L &lt;- envelope(p1.m1, fun = Lest)
@@ -456,7 +456,7 @@ mas agregadas.</p>
 <p>O que pode estar acontecendo? Uma possibilidade é que a intensidade
 não é constante, mas varia pela área. Assim, as plantas estariam
 agregadas em algumas regiões da área, mesmo que isso não seja tão fácil
-de preceber no mapa de pontos.</p>
+de perceber no mapa de pontos.</p>
 <p>Vamos supor que a ecóloga que fez esta pesquisa propôs que a matéria
 orgânica no solo poderia aumentar a sobrevivência dessas plantas. Uma
 previsão desta hipótese é que áreas com mais matéria orgânica deveriam
@@ -572,8 +572,8 @@ exponencial do tipo <span class="math inline">\(\lambda = e^{a_0 + a_1
 X}\)</span>, em que <span class="math inline">\(\lambda\)</span> é a
 intensidade do processo, <span class="math inline">\(X\)</span> é a
 variável preditora ou independente (no caso o conteúdo de matéria
-orgância) e <span class="math inline">\(a_0\)</span> e <span class="math inline">\(a_1\)</span> são os coeficientes da função, cujos
-valors é estimado pela rotina de ajuste do modelo.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+orgânica) e <span class="math inline">\(a_0\)</span> e <span class="math inline">\(a_1\)</span> são os coeficientes da função, cujos
+valores é estimado pela rotina de ajuste do modelo.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p>Não se preocupe com o que sejam estas variáveis, pois o
 argumento não depende disto, apenas de considerar que uma preditora é
 melhor do que a outra.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
