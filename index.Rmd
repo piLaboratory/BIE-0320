@@ -3,10 +3,36 @@ title: "Exercícios práticos em Ecologia de Populações e Comunidade Vegetais"
 author: "Disciplina BIE-0320, Graduação em Biologia, IB-USP"
 output:
   html_document:
+    toc: true
     theme: united
 ---
 
+# Apresentação
+
+Neste site guardo alguns exercícios práticos em R que desenvolvi para
+disciplina Ecologia de Populações e Comunidades Vegetais, do curso de Graduação em Ciências Biológicas
+da USP. 
+
+Para outros tutoriais em ecologia, veja o [Portal EcoVirtual](http://ecovirtual.ib.usp.br/). 
+
+
 # Estrutura de populações
+
+Um dos fenômenos mais estudados em ecologia são padrões, ou
+estruturas. Alguns exemplos de estrutura:
+* *Estrutura de tamanhos*: a proporção de indivíduos de uma população de árvores em classes de diâmetro;
+* *Padrão de abundâncias*: proporção, ou número de espécies em classes
+  de abundâncias (por exemplo, raras x abundantes);
+* *Estrutura espacial*: distribuição de plantas numa área.
+
+Podemos pensar nos padrões como cenas de um filme, que se sucedem,
+obedecendo a dinâmica, que é o roteiro do filme. Ao identificar
+padrões, podemos entender muito da dinâmica que os gerou. 
+
+Neste exercício prático, vamos demonstrar isso analisando estrutura
+espaciais.
+
+## Estrutura  espacial
 
 A distribuição das plantas adultas no espaço é um testemunho dos
 processos de dispersão de propágulos, estabelecimento de jovens, e sua
@@ -17,11 +43,11 @@ que geraram estes padrões. Nesta prática, você vai conhecer uma destas
 técnicas, que é a análise de padrões de pontos no espaço (*Point pattern
 analysis*).
 
-Aqui estão os links para os três roteiros desta prática:
+Aqui estão os links para os três roteiros desta prática, siga-os nesta ordem:
 
-* [Simulação de padrões de pontos no espaço](simulacao_pontos_no_espaco.html)
-* [O índice L de Ripley](modelo_PH_L_ripley.html)
-* [Modelos de distribuição de pontos no espaço](modelos_distribuicao_ajuste_selecao.html)
+1. [Simulação de padrões de pontos no espaço](simulacao_pontos_no_espaco.html)
+2. [O índice L de Ripley](modelo_PH_L_ripley.html)
+3. [Modelos de distribuição de pontos no espaço](modelos_distribuicao_ajuste_selecao.html)
 
 
 # Estrutura de Comunidades
