@@ -22,7 +22,7 @@ library(spatstat)
 
 # Introdução
 
-No roteiro anterior, vimos como a função de L de Ripley pode ser usada
+No [roteiro anterior](modelo_PH_L_ripley.html), vimos como a função de L de Ripley pode ser usada
 para avaliar se um padrão de distribuição de pontos no espaço
 corresponde ao esperado por um processo Poisson homogêneo. Neste
 roteiro, vamos generalizar esta ideia, mostrando duas maneiras pela
