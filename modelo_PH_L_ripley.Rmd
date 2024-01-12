@@ -12,7 +12,7 @@ output:
 ---
 
 
-```{r settings, echo=FALSE}
+```{r settings, echo=FALSE,  message = FALSE}
 library(knitr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 library(spatstat)
